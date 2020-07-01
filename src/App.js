@@ -2,23 +2,40 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { firebaseRef as firebase } from './firebase/firebase'
+
 function App() {
+
+  const email = 'tomasvzn@gmail.com';
+  const password = '12345678';
+
+  firebase.auth().onAuthStateChanged(user => {
+    if(user){
+      
+    }
+  })
+
+  const crearClase = () => {
+    const clase = {
+      nombre: 'edd',
+      profesor: 'leger',
+      cantidadAlumnos: 32,
+      activo: false,
+      puntuacion: 4.3,
+    }
+    firebase.firestore().collection('clases').doc().set(clase);
+  }
+
+  const editarClase = () => {
+    firebase.firestore().collection('clases').doc('SIXHk4rNT6nQcG7mNfAO').update({ profesor: 'telgie' })
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => firebase.auth().signInWithEmailAndPassword(email, password)}>CREAR USUARIO</button>
+      <button onClick={crearClase}>CREAR CLASE</button>
+      <button onClick={editarClase}>EDITAR CLASE</button>
     </div>
   );
 }

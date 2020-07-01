@@ -1,8 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import './App.css';
 
 import { firebaseRef as firebase } from './firebase/firebase'
+
+import { LoginPage } from './pages';
 
 function App() {
 
@@ -32,11 +39,15 @@ function App() {
 
 
   return (
-    <div className="App">
-      <button onClick={() => firebase.auth().signInWithEmailAndPassword(email, password)}>CREAR USUARIO</button>
-      <button onClick={crearClase}>CREAR CLASE</button>
-      <button onClick={editarClase}>EDITAR CLASE</button>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

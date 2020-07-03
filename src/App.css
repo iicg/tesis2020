@@ -2,37 +2,34 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Montserrat', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input {
+  font-family: 'Montserrat', sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+  font-family: 'Dosis', sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+  font-family: 'Dosis', sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+  font-family: 'Dosis', sans-serif;
+}
+
+h4 {
+  font-family: 'Dosis', sans-serif;
+}
+
+h5 {
+  font-family: 'Dosis', sans-serif;
+}
+
+h6 {
+  font-family: 'Dosis', sans-serif;
 }

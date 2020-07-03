@@ -1,17 +1,28 @@
 import { firebaseRef as firebase } from './firebase';
 
-// eslint-disable-next-line import/prefer-default-export
 export function signIn(email, password) {
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
   firebase
     .auth()
-    .signInWithEmailAndPassword(email, password)
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(() => {
+      firebase.auth().signInWithEmailAndPassword(email, password);
+    })
     .catch((error) => alert(error));
+}
+
+function formatSession(user) {
+  return {
+    name: user.displayName,
+    email: user.email,
+    photoUrl: user.photoURL,
+    emailVerified: user.emailVerified,
+    uid: user.uid,
+  };
 }
 
 function handleLoginStatusChange(user) {
   if (user) {
-    console.log(user);
+    console.log(formatSession(user));
   }
 }
 

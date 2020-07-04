@@ -1,11 +1,12 @@
 import { initFirebase } from './firebase';
-import { signIn, setupSessionListeners } from './session';
+import { signIn, signOut, setupSessionListeners } from './session';
 
 initFirebase();
 
 export default {
   session: {
     signIn,
+    signOut,
     setupListeners: setupSessionListeners,
   },
 };

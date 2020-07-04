@@ -1,13 +1,9 @@
 import { firebaseRef as firebase } from './firebase';
+import ReduxService from '../redux-service';
 
 export function signIn(email, password) {
-  firebase
-    .auth()
-    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    .then(() => {
-      firebase.auth().signInWithEmailAndPassword(email, password);
-    })
-    .catch((error) => alert(error));
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+  firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
 function formatSession(user) {
@@ -22,10 +18,15 @@ function formatSession(user) {
 
 function handleLoginStatusChange(user) {
   if (user) {
-    console.log(formatSession(user));
+    const session = formatSession(user);
+    ReduxService.dispatch(ReduxService.session.actions.set(session));
   }
 }
 
 export async function setupSessionListeners() {
   firebase.auth().onAuthStateChanged(handleLoginStatusChange);
+}
+
+export function signOut() {
+  firebase.auth().signOut();
 }

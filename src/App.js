@@ -1,26 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './App.css';
+import React, { useEffect } from 'react';
+import { Provider as StoreProvider } from 'react-redux';
+import configureStore from './redux/configure-store';
 
-import { LoginPage, LoadingPage, HomePage } from './pages';
+import Navigator from './navigator';
+
+import { ReduxService, Firebase } from './utils';
+
+const store = configureStore();
 
 function App() {
+  useEffect(() => {
+    ReduxService.setStore(store);
+    Firebase.session.setupListeners();
+  }, []);
+
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/">
-            <LoadingPage />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <StoreProvider store={store}>
+      <Navigator />
+    </StoreProvider>
   );
 }
 

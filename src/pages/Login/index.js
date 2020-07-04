@@ -1,15 +1,26 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 
 import './styles.css';
 
+import { useHistory } from 'react-router-dom';
 import loginFondo from '../../img/fondoLogin.jpg';
 import logo from '../../img/logo.png';
 
-import { Firebase } from '../../utils';
+import { Firebase, ReduxService } from '../../utils';
+import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const session = useShallowEqualSelector(ReduxService.session.selectors.active);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (session.authenticated) {
+      history.push('/home');
+    }
+  }, [session, history]);
 
   const onPressLogin = useCallback(() => {
     Firebase.session.signIn(email, password);

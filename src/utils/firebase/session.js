@@ -1,4 +1,5 @@
 import { firebaseRef as firebase } from './firebase';
+import { persistor } from '../../redux/configure-store';
 import ReduxService from '../redux-service';
 
 export function signIn(email, password) {
@@ -28,5 +29,7 @@ export async function setupSessionListeners() {
 }
 
 export function signOut() {
+  persistor.purge();
+  window.location.replace('/');
   firebase.auth().signOut();
 }

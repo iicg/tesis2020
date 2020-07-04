@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { ReduxService, Firebase } from '../../utils';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
@@ -7,6 +7,12 @@ import './styles.css';
 
 export default function HomePage() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
+
+  useEffect(() => {
+    if (!session.authenticated) {
+      window.location.replace('/');
+    }
+  }, [session]);
 
   const signOut = useCallback(() => Firebase.session.signOut(), []);
 

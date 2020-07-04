@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Provider as StoreProvider } from 'react-redux';
-import configureStore from './redux/configure-store';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { store, persistor } from './redux/configure-store';
 
 import Navigator from './navigator';
 
 import { ReduxService, Firebase } from './utils';
-
-const store = configureStore();
+import { LoadingPage } from './pages';
 
 function App() {
   useEffect(() => {
@@ -16,7 +16,9 @@ function App() {
 
   return (
     <StoreProvider store={store}>
-      <Navigator />
+      <PersistGate loading={<LoadingPage />} persistor={persistor}>
+        <Navigator />
+      </PersistGate>
     </StoreProvider>
   );
 }

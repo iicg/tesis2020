@@ -1,3 +1,4 @@
+import { PURGE } from 'redux-persist';
 import { CLEAR_SESSION, SET_SESSION, UPDATE_SESSION } from './constants';
 
 const initialState = {
@@ -12,6 +13,8 @@ export default (state = initialState, action) => {
       return { ...action.payload, authenticated: true };
     case UPDATE_SESSION:
       return { ...state, ...action.payload };
+    case PURGE:
+      return initialState;
     default:
       return state;
   }

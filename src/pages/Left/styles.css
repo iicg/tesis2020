@@ -1,0 +1,22 @@
+.left-container{
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 100vh;
+  background-color: #9dff00a4;
+  border: 50px;
+  align-items: center;
+}
+.left-container button{
+  color: white;
+  font-size:16px;
+  border-radius:8px;
+  background-color:rgba(1, 1, 1, 0.288);
+  padding:8px;
+  border:#fffb00;
+  cursor: pointer;
+  height: 50px;
+  width: 110px;
+  margin-top: 30px;
+  margin-inline: 20px;
+}

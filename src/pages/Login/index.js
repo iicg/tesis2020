@@ -28,56 +28,53 @@ export default function LoginPage() {
 
   return (
     <div className="login-container">
+
       <div className="login-left">
-        <div className="login-left-container">
-          <div className="login-left-header">
-            <img src={logo} alt="FitnessCity" />
-          </div>
-          <h1 className="login-title">INGRESA A FITNESS CITY</h1>
-          <div className="login-input-container">
-            <label htmlFor="email" className="login-label">
-              Email
-            </label>
-            <input
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              placeholder="ejemplo@email.com"
-              required
-              className="login-input"
-            />
-          </div>
-          <div className="login-input-container">
-            <label htmlFor="password" className="login-label">
-              Contraseña
-            </label>
-            <input
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              placeholder="••••••••"
-              required
-              className="login-input"
-            />
-          </div>
-          <input
-            className="login-button-sesion"
-            type="submit"
-            value="Iniciar sesion"
-            onClick={onPressLogin}
-          />
-          <input
-            className="login-button-registro"
-            type="submit"
-            value="¿No tienes cuenta? ¡Regístrate!"
-          />
+        <div className="login-left-logo">
+          <img src={logo} alt="FitnessCity" />
         </div>
+        <div className='login-left-container'>
+          <div className='login-left-center'>
+            <div className='login-title'>
+              <h1>INGRESA A FITNESS CITY</h1>
+            </div>
+            <div className='login-input'>
+              <h4>Email</h4>
+              <input
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                placeholder="ejemplo@email.com"
+                required
+              />
+            </div>
+            <div className='login-input'>
+              <h4>Constraseña</h4>
+              <input
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            <input
+              className="login-button-sesion"
+              type="submit"
+              value="Iniciar sesion"
+              onClick={onPressLogin}
+            />
+          </div>
+        </div>
+        <div className='login-left-footer'></div>
       </div>
+
       <div className="login-right">
-        <img src={loginFondo} alt="study" />
+        <img src={loginFondo} alt="crossfit" />
       </div>
+
     </div>
   );
 }

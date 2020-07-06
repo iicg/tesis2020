@@ -2,34 +2,17 @@
   text-align: center;
 }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-}
-
+body,
 input {
   font-family: 'Montserrat', sans-serif;
 }
 
-h1 {
-  font-family: 'Dosis', sans-serif;
-}
-
-h2 {
-  font-family: 'Dosis', sans-serif;
-}
-
-h3 {
-  font-family: 'Dosis', sans-serif;
-}
-
-h4 {
-  font-family: 'Dosis', sans-serif;
-}
-
-h5 {
-  font-family: 'Dosis', sans-serif;
-}
-
-h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
   font-family: 'Dosis', sans-serif;
 }

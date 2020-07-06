@@ -28,17 +28,16 @@ export default function LoginPage() {
 
   return (
     <div className="login-container">
-
       <div className="login-left">
         <div className="login-left-logo">
           <img src={logo} alt="FitnessCity" />
         </div>
-        <div className='login-left-container'>
-          <div className='login-left-center'>
-            <div className='login-title'>
+        <div className="login-left-container">
+          <div className="login-left-center">
+            <div className="login-title">
               <h1>INGRESA A FITNESS CITY</h1>
             </div>
-            <div className='login-input'>
+            <div className="login-input">
               <h4>Email</h4>
               <input
                 id="email"
@@ -49,7 +48,7 @@ export default function LoginPage() {
                 required
               />
             </div>
-            <div className='login-input'>
+            <div className="login-input">
               <h4>Constraseña</h4>
               <input
                 id="password"
@@ -68,13 +67,12 @@ export default function LoginPage() {
             />
           </div>
         </div>
-        <div className='login-left-footer'></div>
+        <div className="login-left-footer" />
       </div>
 
       <div className="login-right">
         <img src={loginFondo} alt="crossfit" />
       </div>
-
     </div>
   );
 }

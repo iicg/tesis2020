@@ -1,0 +1,28 @@
+.clase-item-container {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  transition-duration: 250ms;
+}
+
+.clase-item-container:hover {
+  transform: scale(1.005);
+}
+
+.clase-item-nombre {
+  margin: 0;
+  color: white;
+}
+
+.clase-item-descripcion {
+  margin: 0;
+  color: white;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.clase-item-inscritos {
+  margin: 0;
+  color: white;
+  font-size: 12px;
+}

@@ -1,25 +1,19 @@
 .home-body {
   display: flex;
-  flex:1;
-  flex-direction: column;
+  flex: 1;
+  flex-direction: 'row';
 }
 
-.home-component-left{
-  flex:1;
+.home-component-left {
+  flex: 1;
 }
 
-.home-container {
-  display: flex;
-  flex-direction: column;
-  flex: 4;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
+.home-component-right {
+  flex: 1;
   background-color: #181a1e;
 }
 
-.home-container h1,
+.home-component-right h1,
 h4 {
-  color: black;
+  color: white;
 }

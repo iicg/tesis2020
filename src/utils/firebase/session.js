@@ -2,6 +2,10 @@ import { firebaseRef as firebase } from './firebase';
 import { persistor } from '../../redux/configure-store';
 import ReduxService from '../redux-service';
 
+function getUserReference() {
+  return firebase.firestore().collection('usuarios');
+}
+
 export function signIn(email, password) {
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
   firebase.auth().signInWithEmailAndPassword(email, password);
@@ -17,10 +21,20 @@ function formatSession(user) {
   };
 }
 
+function getSessionData(uid) {
+  getUserReference()
+    .doc(uid)
+    .get()
+    .then((doc) => {
+      ReduxService.dispatch(ReduxService.session.actions.update(doc.data()));
+    });
+}
+
 function handleLoginStatusChange(user) {
   if (user) {
     const session = formatSession(user);
     ReduxService.dispatch(ReduxService.session.actions.set(session));
+    getSessionData(user.uid);
   }
 }
 

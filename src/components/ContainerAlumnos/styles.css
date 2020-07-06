@@ -1,0 +1,12 @@
+.container-clases-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  padding: 2em;
+}
+
+.container-clases-titulo {
+  margin: 0;
+  text-transform: uppercase;
+}

@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { ReduxService, Firebase } from '../../utils';
-import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
+import { Sidebar, Header, ContainerClases, ContainerAlumnos } from '../../components';
 
-import Header from '../Header/index'
-import Left from '../Left/index'
 import './styles.css';
+
+import { ReduxService } from '../../utils';
+import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
 export default function HomePage() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
+  const [opcion, setOpcion] = useState(0);
 
   useEffect(() => {
     if (!session.authenticated) {
@@ -16,21 +17,13 @@ export default function HomePage() {
     }
   }, [session]);
 
-  const signOut = useCallback(() => Firebase.session.signOut(), []);
-
   return (
     <div>
-      <Header />
-      <div className='home-body'>
-        <div className='home-component-left'>
-          <Left />
-        </div>
-        <div className='home-container'>
-          <h1>Pagina de inicio</h1>
-          <h4>Email: {session.email}</h4>
-          <button type="button" onClick={signOut}>
-            Cerrar sesion
-            </button>
+      <Header nombre={`${session.nombre} ${session.apellido}`} />
+      <div className="home-body">
+        <Sidebar admin={session.admin} setOpcion={setOpcion} />
+        <div className="home-component-right">
+          {opcion === 0 ? <ContainerClases /> : <ContainerAlumnos />}
         </div>
       </div>
     </div>

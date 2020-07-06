@@ -26,14 +26,16 @@ function getSessionData(uid) {
     .doc(uid)
     .get()
     .then((doc) => {
-      ReduxService.dispatch(ReduxService.session.actions.update(doc.data()));
+      if (doc.exists) {
+        ReduxService.dispatch(ReduxService.session.actions.update(doc.data()));
+      }
     });
 }
 
 function handleLoginStatusChange(user) {
   if (user) {
     const session = formatSession(user);
-    ReduxService.dispatch(ReduxService.session.actions.set(session));
+    ReduxService.dispatch(ReduxService.session.actions.update(session));
     getSessionData(user.uid);
   }
 }

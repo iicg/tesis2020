@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { HomePage, LoginPage, LoadingPage } from '../pages';
+import { HomePage, LoginPage } from '../pages';
 import '../App.css';
 
 export default function Navigator() {

@@ -11,7 +11,7 @@ export default function ContainerClases() {
 
   useEffect(() => {
     Firebase.classes.getAll();
-  });
+  }, []);
 
   return (
     <div className="container-clases-container">

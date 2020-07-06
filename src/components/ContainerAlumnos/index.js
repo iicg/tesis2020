@@ -11,7 +11,7 @@ export default function ContainerAlumnos() {
 
   useEffect(() => {
     Firebase.users.getAll();
-  });
+  }, []);
 
   return (
     <div className="container-clases-container">

@@ -16,7 +16,7 @@ export default function ContainerAlumnos() {
   return (
     <div className="container-clases-container">
       <h1 className="container-clases-titulo">Alumnos de Fitness City</h1>
-      <ul dir="horizontal">{alumnos.map(renderAlumno)}</ul>
+      <ul>{alumnos.map(renderAlumno)}</ul>
     </div>
   );
 }

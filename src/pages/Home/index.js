@@ -4,7 +4,7 @@ import { Sidebar, Header, ContainerClases, ContainerAlumnos } from '../../compon
 
 import './styles.css';
 
-import { ReduxService } from '../../utils';
+import { ReduxService, Firebase } from '../../utils';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
 export default function HomePage() {
@@ -17,9 +17,13 @@ export default function HomePage() {
     }
   }, [session]);
 
+  const signOut = () => {
+    Firebase.session.signOut();
+  };
+
   return (
     <div>
-      <Header nombre={`${session.nombre} ${session.apellido}`} />
+      <Header signOut={signOut} nombre={`${session.nombre} ${session.apellido}`} />
       <div className="home-body">
         <Sidebar admin={session.admin} setOpcion={setOpcion} />
         <div className="home-component-right">

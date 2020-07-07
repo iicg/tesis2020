@@ -27,7 +27,10 @@ function getSessionData(uid) {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        ReduxService.dispatch(ReduxService.session.actions.update(doc.data()));
+        ReduxService.dispatch(
+          ReduxService.session.actions.update({ ...doc.data(), authenticated: true }),
+        );
+        window.location.replace('/home');
       }
     });
 }

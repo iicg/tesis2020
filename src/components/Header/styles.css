@@ -29,4 +29,5 @@
 .header-nombre {
   color: white;
   text-align: right;
+  cursor: pointer;
 }

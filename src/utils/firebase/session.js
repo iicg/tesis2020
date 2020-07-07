@@ -30,7 +30,6 @@ function getSessionData(uid) {
         ReduxService.dispatch(
           ReduxService.session.actions.update({ ...doc.data(), authenticated: true }),
         );
-        window.location.replace('/home');
       }
     });
 }

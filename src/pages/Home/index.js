@@ -23,7 +23,11 @@ export default function HomePage() {
 
   return (
     <div>
-      <Header signOut={signOut} nombre={`${session.nombre} ${session.apellido}`} />
+      <Header
+        signOut={signOut}
+        nombre={`${session.nombre} ${session.apellido}`}
+        rut={session.rut}
+      />
       <div className="home-body">
         <Sidebar admin={session.admin} setOpcion={setOpcion} />
         <div className="home-component-right">

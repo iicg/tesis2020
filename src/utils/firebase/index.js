@@ -1,7 +1,9 @@
 import { initFirebase } from './firebase';
 import { signIn, signOut, setupSessionListeners } from './session';
 import { getAllClasses, deleteClass } from './classes';
-import { getAllUsuarios } from './users';
+import { getAllUsuarios, updateUsuario } from './users';
+
+import { blockUser } from './admin';
 
 initFirebase();
 
@@ -17,5 +19,9 @@ export default {
   },
   users: {
     getAll: getAllUsuarios,
+    update: updateUsuario,
+  },
+  admin: {
+    blockUser,
   },
 };

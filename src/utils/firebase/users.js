@@ -13,3 +13,7 @@ export function getAllUsuarios() {
     .then(extractSnapshotDocsData)
     .then((data) => ReduxService.dispatch(ReduxService.users.actions.set(data)));
 }
+
+export function updateUsuario(uid, change) {
+  getUsersReference().doc(uid).update(change);
+}

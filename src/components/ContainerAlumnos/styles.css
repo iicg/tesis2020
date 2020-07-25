@@ -9,7 +9,8 @@
 .container-clases-list-alumnos {
   margin-top: 30px;
   display: grid;
-  flex-direction: row;
+  grid-template-columns: 24% 24% 24% 24%;
+  gap: 20px 20px;
   border-color: #82d103a4;
 }
 

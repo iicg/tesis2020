@@ -28,10 +28,12 @@
 }
 
 .clase-page-action-container input {
+  background-color: #adf83585;
+  color: white;
   padding: 0.7em 1.5em 0.7em 1.5em;
   margin-right: 1em;
   border: none;
-  border-radius: 2px;
+  border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   transition-duration: 100ms;

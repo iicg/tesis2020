@@ -1,0 +1,48 @@
+.clase-page-container {
+  flex: 1;
+  height: 100vh;
+  background-color: #181a1e;
+}
+
+.clase-page-content {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-right: 20vw;
+  padding-left: 20vw;
+}
+
+.clase-page-title {
+  color: white;
+  margin: 0;
+}
+
+.clase-page-description {
+  color: white;
+  opacity: 0.5;
+  line-height: 1.5em;
+}
+
+.clase-page-action-container {
+  display: flex;
+  margin-top: 1em;
+}
+
+.clase-page-action-container input {
+  padding: 0.7em 1.5em 0.7em 1.5em;
+  margin-right: 1em;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  transition-duration: 100ms;
+}
+
+.clase-page-action-container input:hover {
+  transform: scale(0.99);
+}
+
+.clase-page-eliminar {
+  background-color: #eb4034;
+  color: white;
+  font-weight: bold;
+}

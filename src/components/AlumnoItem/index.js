@@ -12,6 +12,10 @@ export default function AlumnoItem(props) {
       </h3>
       <p className="alumno-item-descripcion">Rut: {alumno.rut}</p>
       <h5 className="alumno-item-descripcion">Tipo de plan: {alumno.tipoPlan}</h5>
+      <div className="alumno-item-acciones">
+        <input type="button" value="Bloquear" />
+        <input type="button" value="Editar" />
+      </div>
     </li>
   );
 }

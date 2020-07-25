@@ -1,7 +1,6 @@
 .clase-item-container {
   margin-top: 1em;
   margin-bottom: 1em;
-  cursor: pointer;
   transition-duration: 250ms;
 }
 

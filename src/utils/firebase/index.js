@@ -1,6 +1,6 @@
 import { initFirebase } from './firebase';
 import { signIn, signOut, setupSessionListeners } from './session';
-import { getAllClasses } from './classes';
+import { getAllClasses, deleteClass } from './classes';
 import { getAllUsuarios } from './users';
 
 initFirebase();
@@ -13,6 +13,7 @@ export default {
   },
   classes: {
     getAll: getAllClasses,
+    delete: deleteClass,
   },
   users: {
     getAll: getAllUsuarios,

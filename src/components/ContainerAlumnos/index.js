@@ -16,6 +16,9 @@ export default function ContainerAlumnos() {
   return (
     <div className="container-clases-container">
       <h1 className="container-clases-titulo">Alumnos de Fitness City</h1>
+      <div className="clase-page-action-container">
+        <input type="button" value="Agregar alumno" />
+      </div>
       <ul>{alumnos.map(renderAlumno)}</ul>
     </div>
   );

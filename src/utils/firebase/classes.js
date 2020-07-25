@@ -13,3 +13,10 @@ export function getAllClasses() {
     .then(extractSnapshotDocsData)
     .then((data) => ReduxService.dispatch(ReduxService.classes.actions.set(data)));
 }
+
+export function deleteClass(id) {
+  getClassesReference()
+    .doc(id)
+    .delete()
+    .then(() => ReduxService.dispatch(ReduxService.classes.actions.remove(id)));
+}

@@ -2,11 +2,6 @@
   margin-top: 1em;
   margin-bottom: 1em;
   cursor: pointer;
-  transition-duration: 250ms;
-}
-
-.alumno-item-container:hover {
-  transform: scale(1.005);
 }
 
 .alumno-item-nombre {
@@ -25,4 +20,9 @@
   margin: 0;
   color: white;
   font-size: 12px;
+}
+
+.alumno-item-acciones {
+  display: flex;
+  margin-top: 1em;
 }

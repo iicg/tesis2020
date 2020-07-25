@@ -6,6 +6,11 @@
   padding: 2em;
 }
 
+.container-clases-container ul {
+  list-style-type: none;
+  list-style: none;
+}
+
 .container-clases-titulo {
   margin: 0;
   text-transform: uppercase;

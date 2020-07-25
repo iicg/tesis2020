@@ -12,9 +12,16 @@ export default (state = initialState, action) => {
     case CLEAR_USERS:
       return initialState;
     case MODIFY_USER:
-      return state.map((clase) => (clase.id === action.payload.id ? action.payload : clase));
+      return state.map((usuario) =>
+        usuario.uid === action.payload.uid
+          ? {
+              ...usuario,
+              ...action.payload,
+            }
+          : usuario,
+      );
     case REMOVE_USER:
-      return state.filter((clase) => clase.id !== action.payload);
+      return state.filter((usuario) => usuario.id !== action.payload);
     case SET_USERS:
       return action.payload;
     case PURGE:

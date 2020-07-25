@@ -38,10 +38,25 @@
 }
 
 .alumno-item-acciones input {
+  height: 25px;
+  width: 100px;
   cursor: pointer;
-  background-color: #ffffff59;
+  background-color: #ffffff36;
   color: black;
-  margin: 5px;
   border-radius: 4px;
   border: none;
+}
+
+.bloqueo-alumno {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.editar-alumno {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }

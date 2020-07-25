@@ -20,12 +20,16 @@ export default function AlumnoItem(props) {
       <p className="alumno-item-descripcion">Rut: {alumno.rut}</p>
       <h5 className="alumno-item-descripcion">Tipo de plan: {alumno.tipoPlan}</h5>
       <div className="alumno-item-acciones">
-        <input
-          onClick={blockUser}
-          type="button"
-          value={alumno.bloqueado ? 'Desbloquear' : 'Bloquear'}
-        />
-        <input type="button" value="Editar" />
+        <div className="bloqueo-alumno">
+          <input
+            onClick={blockUser}
+            type="button"
+            value={alumno.bloqueado ? 'Desbloquear' : 'Bloquear'}
+          />
+        </div>
+        <div className="editar-alumno">
+          <input type="button" value="Editar" />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 import { renderAlumno } from './utils';
 import './styles.css';
 
@@ -17,7 +17,9 @@ export default function ContainerAlumnos() {
     <div className="container-clases-container">
       <h1 className="container-clases-titulo">Alumnos de Fitness City</h1>
       <div className="clase-page-action-container">
-        <input type="button" value="Agregar alumno" />
+        <Link to="/NewAlumno">
+          <input type="button" value="Agregar alumno" />
+        </Link>
       </div>
       <div className="container-clases-list-alumnos">{alumnos.map(renderAlumno)}</div>
     </div>

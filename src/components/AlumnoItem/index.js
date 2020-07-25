@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Firebase } from '../../utils';
@@ -7,9 +7,16 @@ import './styles.css';
 
 export default function AlumnoItem(props) {
   const { alumno } = props;
+  const [loading, setLoading] = useState(false);
 
   const blockUser = useCallback(() => {
-    Firebase.admin.blockUser(alumno.uid);
+    setLoading(true);
+    if (alumno.bloqueado) Firebase.admin.unblockUser(alumno.uid);
+    else Firebase.admin.blockUser(alumno.uid);
+  }, [alumno]);
+
+  useEffect(() => {
+    setLoading(false);
   }, [alumno]);
 
   return (
@@ -20,11 +27,15 @@ export default function AlumnoItem(props) {
       <p className="alumno-item-descripcion">Rut: {alumno.rut}</p>
       <h5 className="alumno-item-descripcion">Tipo de plan: {alumno.tipoPlan}</h5>
       <div className="alumno-item-acciones">
-        <input
-          onClick={blockUser}
-          type="button"
-          value={alumno.bloqueado ? 'Desbloquear' : 'Bloquear'}
-        />
+        {loading ? (
+          <div>Cargando</div>
+        ) : (
+          <input
+            onClick={blockUser}
+            type="button"
+            value={alumno.bloqueado ? 'Desbloquear' : 'Bloquear'}
+          />
+        )}
         <input type="button" value="Editar" />
       </div>
     </div>

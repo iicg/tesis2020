@@ -19,7 +19,7 @@ export default function ContainerAlumnos() {
       <div className="clase-page-action-container">
         <input type="button" value="Agregar alumno" />
       </div>
-      <ul>{alumnos.map(renderAlumno)}</ul>
+      <div className="container-clases-list-alumnos">{alumnos.map(renderAlumno)}</div>
     </div>
   );
 }

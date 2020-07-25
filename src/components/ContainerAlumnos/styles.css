@@ -6,12 +6,21 @@
   padding: 2em;
 }
 
-.container-clases-container ul {
-  list-style-type: none;
-  list-style: none;
+.container-clases-list-alumnos {
+  margin-top: 30px;
+  display: grid;
+  flex-direction: row;
+  border-color: #82d103a4;
 }
 
 .container-clases-titulo {
   margin: 0;
   text-transform: uppercase;
+}
+
+.clase-page-action-container input {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 50px;
+  border: none;
 }

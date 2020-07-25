@@ -6,7 +6,7 @@ export default function AlumnoItem(props) {
   const { alumno } = props;
 
   return (
-    <li className="alumno-item-container">
+    <div className="alumno-item-container">
       <h3 className="alumno-item-nombre">
         {alumno.nombre} {alumno.apellido}
       </h3>
@@ -16,6 +16,6 @@ export default function AlumnoItem(props) {
         <input type="button" value="Bloquear" />
         <input type="button" value="Editar" />
       </div>
-    </li>
+    </div>
   );
 }

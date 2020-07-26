@@ -1,6 +1,8 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 import { Firebase } from '../../utils';
 
 import './styles.css';
@@ -29,7 +31,7 @@ export default function AlumnoItem(props) {
       <h3 className="alumno-item-nombre">
         {alumno.nombre} {alumno.apellido}
       </h3>
-      <p className="alumno-item-descripcion">Rut: {alumno.rut}</p>
+      <p className="alumno-item-descripcion">RUT {alumno.rut}</p>
       <h5 className="alumno-item-descripcion">Tipo de plan: {alumno.tipoPlan}</h5>
       <div className="alumno-item-acciones">
         <div className="bloqueo-alumno">
@@ -43,7 +45,9 @@ export default function AlumnoItem(props) {
           />
         </div>
         <div className="editar-alumno">
-          <input type="button" value="Editar" />
+          <Link className="editar-alumno-link" to={`/editaralumno/${alumno.uid}`}>
+            <input type="button" value="Editar" />
+          </Link>
         </div>
       </div>
     </div>

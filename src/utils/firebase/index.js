@@ -3,7 +3,7 @@ import { signIn, signOut, setupSessionListeners } from './session';
 import { getAllClasses, deleteClass } from './classes';
 import { getAllUsuarios, updateUsuario } from './users';
 
-import { blockUser, unblockUser, createUser } from './admin';
+import { blockUser, unblockUser, createUser, updateUser } from './admin';
 
 initFirebase();
 
@@ -25,5 +25,6 @@ export default {
     blockUser,
     unblockUser,
     createUser,
+    updateUser,
   },
 };

@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import { Header } from '../../components';
 
 import './styles.css';
 
-import { Firebase } from '../../utils';
+import { ReduxService, Firebase } from '../../utils';
+import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
-export default function NewAlumno() {
+export default function EditarAlumno() {
+  const alumnos = useShallowEqualSelector(ReduxService.users.selectors.list);
+  const { uid } = useParams();
+
   const [rut, setRut] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
@@ -16,19 +20,34 @@ export default function NewAlumno() {
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const alumno = alumnos.filter((user) => user.uid === uid)[0];
+    if (alumno) {
+      setRut(alumno.rut);
+      setNombre(alumno.nombre);
+      setApellido(alumno.apellido);
+      setEmail(alumno.email);
+      setTipoPlan(alumno.tipoPlan);
+    } else {
+      window.location.replace('/home');
+    }
+  }, [alumnos, uid]);
+
   const onPress = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     const data = {
+      uid,
       rut,
       nombre,
       apellido,
       email,
       tipoPlan,
     };
-    Firebase.admin.createUser(data).then(() => {
-      alert('Usuario creado!');
+
+    Firebase.admin.updateUser(data).then(() => {
+      alert('Usuario actualizado!');
       setLoading(false);
     });
   };
@@ -39,7 +58,7 @@ export default function NewAlumno() {
       <div className="newAl-container">
         <form onSubmit={onPress}>
           <div className="tituloNewAl">
-            <h1>AGREGAR NUEVO ALUMNO</h1>
+            <h1>EDITAR ALUMNO</h1>
           </div>
           <div className="datosNewAl">
             <div className="titulosNewAl">
@@ -115,7 +134,7 @@ export default function NewAlumno() {
               disabled={loading}
               className="newAl-agregar"
               type="submit"
-              value={loading ? 'Agregando' : 'Agregar'}
+              value={loading ? 'Guardando' : 'Guardar'}
             />
           </div>
         </form>

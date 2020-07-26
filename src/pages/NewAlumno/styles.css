@@ -9,7 +9,8 @@
   display: flex;
   flex-direction: column;
   background-color: #181a1e;
-  background-size: cover;
+  justify-content: center;
+  align-items: center;
 }
 
 .newAl-button {
@@ -17,6 +18,11 @@
   flex: 1;
   flex-direction: row;
   justify-content: center;
+  background-color: #24262a;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  border-radius: 0px 0px 15px 15px;
+  padding: 1em;
 }
 
 .newAl-button input {
@@ -31,7 +37,13 @@
   font-size: 16px;
   font-weight: bold;
   text-align: center;
-  margin-inline: 20px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.newAl-button input:disabled {
+  opacity: 0.3;
+  cursor: auto;
 }
 
 .newAl-agregar {
@@ -43,13 +55,14 @@
 }
 
 .tituloNewAl {
-  background-color: #81818146;
+  background-color: #24262a;
   align-items: center;
   justify-content: center;
   margin-top: 30px;
   padding: 1px;
-  border-radius: 15px;
-  margin-inline: 400px;
+  border-radius: 15px 15px 0px 0px;
+  margin-left: 20vw;
+  margin-right: 20vw;
 }
 
 .tituloNewAl h1 {
@@ -60,13 +73,13 @@
 }
 
 .datosNewAl {
-  flex: 1;
   display: flex;
-  max-height: 200px;
+  min-height: 240px;
+  width: 800px;
   flex-direction: row;
   background-color: #81818146;
-  border-radius: 15px;
-  margin-inline: 400px;
+  margin-left: 20vw;
+  margin-right: 20vw;
   margin-block: 20px;
 }
 
@@ -74,17 +87,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   background-color: #81818146;
-  border-radius: 15px;
 }
 
 .titulosNewAl h1 {
   color: white;
   font-size: 16px;
   font-weight: bold;
-  text-align: left;
-  padding-left: 50px;
+  text-align: center;
 }
 
 .tituloDatoNewAl {
@@ -93,11 +104,12 @@
 }
 
 .newDatosAl {
-  flex: 1;
+  flex: 4;
   display: flex;
   flex-direction: column;
   align-items: left;
-  padding-inline: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .datosNewAl h1 {
@@ -117,10 +129,14 @@
   padding-left: 20px;
   color: white;
   height: 20px;
-  width: 200px;
+  width: 100%;
   border-radius: 8px;
   border-color: rgba(255, 255, 255, 0.226);
   background-color: rgba(0, 0, 0, 0.178);
+}
+
+.datoNewAl input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .datoNewAl-select {

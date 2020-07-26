@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-import logo from '../../img/logo.png';
+import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
-export default function Header(props) {
-  const { nombre, rut, signOut } = props;
+import logo from '../../img/logo.png';
+import { ReduxService } from '../../utils';
+import { signOut } from '../../utils/firebase/session';
+
+export default function Header() {
+  const session = useShallowEqualSelector(ReduxService.session.selectors.active);
+  const { nombre } = session;
   return (
     <header className="header-container">
       <Link to="/home" className="header-left">
@@ -16,9 +21,6 @@ export default function Header(props) {
       <div className="header-right">
         <h4 onClick={signOut} className="header-nombre">
           {nombre} [cerrar sesion]
-        </h4>
-        <h4 onClick={signOut} className="header-nombre">
-          {rut}
         </h4>
       </div>
     </header>

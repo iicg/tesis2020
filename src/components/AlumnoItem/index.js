@@ -11,8 +11,13 @@ export default function AlumnoItem(props) {
 
   const blockUser = useCallback(() => {
     setLoading(true);
-    if (alumno.bloqueado) Firebase.admin.unblockUser(alumno.uid);
-    else Firebase.admin.blockUser(alumno.uid);
+    try {
+      if (alumno.bloqueado) Firebase.admin.unblockUser(alumno.uid);
+      else Firebase.admin.blockUser(alumno.uid);
+    } catch (e) {
+      alert(e);
+      setLoading(false);
+    }
   }, [alumno]);
 
   useEffect(() => {
@@ -28,15 +33,14 @@ export default function AlumnoItem(props) {
       <h5 className="alumno-item-descripcion">Tipo de plan: {alumno.tipoPlan}</h5>
       <div className="alumno-item-acciones">
         <div className="bloqueo-alumno">
-          {loading ? (
-            <div>Cargando</div>
-          ) : (
-            <input
-              onClick={blockUser}
-              type="button"
-              value={alumno.bloqueado ? 'Desbloquear' : 'Bloquear'}
-            />
-          )}
+          <input
+            disabled={loading}
+            onClick={blockUser}
+            type="button"
+            // eslint-disable-next-line no-nested-ternary
+            value={loading ? 'Cargando' : alumno.bloqueado ? 'Desbloquear' : 'Bloquear'}
+            style={{ backgroundColor: alumno.bloqueado ? '#17ad35' : '#de3914' }}
+          />
         </div>
         <div className="editar-alumno">
           <input type="button" value="Editar" />

@@ -28,10 +28,6 @@ export default function ClasePage() {
     }
   }, [id, classes]);
 
-  const signOut = () => {
-    Firebase.session.signOut();
-  };
-
   const eliminarClase = useCallback(() => {
     const result = window.confirm('¿De verdad quieres eliminar esta clase?');
     if (result) {
@@ -41,11 +37,7 @@ export default function ClasePage() {
 
   return (
     <div className="clase-page-container">
-      <Header
-        signOut={signOut}
-        nombre={`${session.nombre} ${session.apellido}`}
-        rut={session.rut}
-      />
+      <Header />
       <div className="clase-page-content">
         <h1 className="clase-page-title">{claseActiva.nombre}</h1>
         {session.admin && (

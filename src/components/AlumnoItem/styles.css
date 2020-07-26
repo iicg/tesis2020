@@ -38,13 +38,25 @@
 }
 
 .alumno-item-acciones input {
+  display: flex;
+  flex: 1;
   height: 25px;
-  width: 100px;
   cursor: pointer;
   background-color: #ffffff36;
-  color: black;
+  color: #ffffff;
+  font-weight: bold;
   border-radius: 4px;
   border: none;
+  transition-duration: 250ms;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.alumno-item-acciones input:hover {
+  transform: scale(1.03);
+  -webkit-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
 }
 
 .bloqueo-alumno {
@@ -52,6 +64,11 @@
   flex: 1;
   justify-content: center;
   align-items: center;
+}
+
+.bloqueo-alumno input:disabled {
+  opacity: 0.3;
+  cursor: auto;
 }
 
 .editar-alumno {

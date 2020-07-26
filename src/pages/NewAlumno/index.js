@@ -1,26 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '../../components';
 
 import './styles.css';
 
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
-import { ReduxService } from '../../utils';
+import { ReduxService, Firebase } from '../../utils';
 import { signOut } from '../../utils/firebase/session';
+import { Link } from 'react-router-dom';
 
 export default function NewAlumno() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
+  const [rut, setRut] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [email, setEmail] = useState('');
+  const [tipoPlan, setTipoPlan] = useState('free');
+
+  const [loading, setLoading] = useState(false);
+
+  const onPress = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const data = {
+      rut,
+      nombre,
+      apellido,
+      email,
+      tipoPlan,
+    };
+    Firebase.admin.createUser(data).then(() => {
+      alert('Usuario creado!');
+      setLoading(false);
+    });
+  };
 
   return (
     <div className="newAl-body">
-      <Header
-        signOut={signOut}
-        nombre={`${session.nombre} ${session.apellido}`}
-        rut={session.rut}
-      />
+      <Header />
       <div className="newAl-container">
-        <form>
+        <form onSubmit={onPress}>
           <div className="tituloNewAl">
-            <h1>DATOS</h1>
+            <h1>AGREGAR NUEVO ALUMNO</h1>
           </div>
           <div className="datosNewAl">
             <div className="titulosNewAl">
@@ -42,19 +63,46 @@ export default function NewAlumno() {
             </div>
             <div className="newDatosAl">
               <div className="datoNewAl">
-                <input type="text" placeholder="rut" required />
+                <input
+                  value={rut}
+                  onChange={(e) => setRut(e.target.value)}
+                  type="text"
+                  placeholder="12.345.678-9"
+                  required
+                />
               </div>
               <div className="datoNewAl">
-                <input type="text" placeholder="nombre" required />
+                <input
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  type="text"
+                  placeholder="Jose Manuel"
+                  required
+                />
               </div>
               <div className="datoNewAl">
-                <input type="text" placeholder="apellidos" required />
+                <input
+                  value={apellido}
+                  onChange={(e) => setApellido(e.target.value)}
+                  type="text"
+                  placeholder="Perez Gonzalez"
+                  required
+                />
               </div>
               <div className="datoNewAl">
-                <input type="text" placeholder="email" required />
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="text"
+                  placeholder="ejemplo@email.com"
+                  required
+                />
               </div>
               <div className="datoNewAl">
-                <select className="datoNewAl-select">
+                <select
+                  value={tipoPlan}
+                  onChange={(e) => setTipoPlan(e.target.value)}
+                  className="datoNewAl-select">
                   <option value="free">Free</option>
                   <option value="premium">Premium</option>
                 </select>
@@ -62,8 +110,15 @@ export default function NewAlumno() {
             </div>
           </div>
           <div className="newAl-button">
-            <input className="newAl-agregar" type="submit" value="Agregar" />
-            <input className="newAl-cancelar" type="submit" value="Cancelar" />
+            <input
+              disabled={loading}
+              className="newAl-agregar"
+              type="submit"
+              value={loading ? 'Agregando' : 'Agregar'}
+            />
+            <Link to="/home">
+              <input className="newAl-cancelar" type="cancel" value="Cancelar" />
+            </Link>
           </div>
         </form>
       </div>

@@ -18,7 +18,7 @@ export default function HomePage() {
   }, [session]);
 
   return (
-    <div>
+    <div className="home-container">
       <Header />
       <div className="home-body">
         <Sidebar admin={session.admin} setOpcion={setOpcion} />

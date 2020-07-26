@@ -1,6 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { HomePage, LoginPage, ClasePage, NewAlumno, EditarAlumnoPage } from '../pages';
+import {
+  HomePage,
+  LoginPage,
+  ClasePage,
+  NewAlumno,
+  EditarAlumnoPage,
+  NuevaClasePage,
+} from '../pages';
 import '../App.css';
 
 export default function Navigator() {
@@ -8,13 +15,16 @@ export default function Navigator() {
     <Router>
       <div>
         <Switch>
+          <Route path="/nuevaclase">
+            <NuevaClasePage />
+          </Route>
           <Route path="/editaralumno/:uid">
             <EditarAlumnoPage />
           </Route>
           <Route path="/nuevoalumno">
             <NewAlumno />
           </Route>
-          <Route path="/clase/:id">
+          <Route path="/clase/:uid">
             <ClasePage />
           </Route>
           <Route path="/home">

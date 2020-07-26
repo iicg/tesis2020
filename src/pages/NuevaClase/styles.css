@@ -1,0 +1,211 @@
+.nueva-clase-body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.nueva-clase-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #181a1e;
+  justify-content: center;
+  align-items: center;
+}
+
+.nueva-clase-button {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-left: 20vw;
+  margin-right: 20vw;
+  border-radius: 0px 0px 15px 15px;
+  padding: 1em;
+}
+
+.nueva-clase-button input {
+  width: 150px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.nueva-clase-button input:disabled {
+  opacity: 0.3;
+  cursor: auto;
+}
+
+.nueva-clase-agregar {
+  background-color: #82d103a4;
+  transition-duration: 250ms;
+}
+
+.nueva-clase-agregar:hover {
+  transform: scale(1.03);
+  -webkit-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+}
+
+.nueva-clase-cancelar {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.titulo-nueva-clase {
+  background-color: rgba(0, 0, 0, 0.3);
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 1px;
+  border-radius: 15px 15px 0px 0px;
+  margin-left: 20vw;
+  margin-right: 20vw;
+}
+
+.titulo-nueva-clase h1 {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.datos-nueva-clase {
+  display: flex;
+  min-height: 240px;
+  width: 800px;
+  flex-direction: row;
+  background-color: #81818146;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  margin-block: 20px;
+}
+
+.titulos-nueva-clase {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #81818146;
+}
+
+.titulos-nueva-clase h1 {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.titulo-dato-nueva-clase {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo-dato-nueva-clase:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nuevos-datos-clase {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.nuevos-datos-clase h1 {
+  color: white;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.dato-nueva-clase {
+  display: flex;
+  flex: 1;
+  padding: 16px;
+}
+
+.dato-nueva-clase textarea {
+  padding-left: 12px;
+  padding-right: 12px;
+  color: white;
+  height: 32px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-style: none;
+  transition-duration: 250ms;
+  resize: none;
+}
+
+.dato-nueva-clase textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.dato-nueva-clase textarea:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dato-nueva-clase textarea:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  font-weight: 500;
+  outline: none;
+}
+
+.dato-nueva-clase input {
+  padding-left: 12px;
+  padding-right: 12px;
+  color: white;
+  height: 32px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-style: none;
+  transition-duration: 250ms;
+}
+
+.dato-nueva-clase input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.dato-nueva-clase input:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dato-nueva-clase input:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  font-weight: 500;
+  outline: none;
+}
+
+.dato-nueva-clase-select {
+  margin-top: 10px;
+  margin-left: 5px;
+  padding-left: 20px;
+  color: white;
+  height: 20px;
+  width: 200px;
+  border-radius: 8px;
+  border-color: rgba(255, 255, 255, 0.226);
+  background-color: rgba(0, 0, 0, 0.178);
+}
+
+.dato-nueva-clase:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.3);
+}

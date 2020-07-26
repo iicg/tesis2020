@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderClase } from './utils';
 import './styles.css';
@@ -20,11 +21,11 @@ export default function ContainerClases() {
     <div className="container-clases-container">
       <h1 className="container-clases-titulo">Clases de Fitness City</h1>
       {session.admin && (
-        <div className="clase-page-action-container">
+        <Link to="/nuevaclase" className="clases-page-action-container">
           <input type="button" value="Agregar clase" />
-        </div>
+        </Link>
       )}
-      <ul dir="horizontal">{classes.map(renderClase)}</ul>
+      <div className="container-clases-list-clases">{classes.map(renderClase)}</div>
     </div>
   );
 }

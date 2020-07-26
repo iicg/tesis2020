@@ -20,3 +20,10 @@ export function deleteClass(id) {
     .delete()
     .then(() => ReduxService.dispatch(ReduxService.classes.actions.remove(id)));
 }
+
+export async function createClass(data) {
+  const claseRef = getClassesReference().doc();
+  return getClassesReference()
+    .doc(claseRef.id)
+    .set({ ...data, uid: claseRef.id });
+}

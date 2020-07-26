@@ -4,3 +4,4 @@ export { default as HomePage } from './Home';
 export { default as ClasePage } from './Clase';
 export { default as NewAlumno } from './NewAlumno';
 export { default as EditarAlumnoPage } from './EditarAlumno';
+export { default as NuevaClasePage } from './NuevaClase';

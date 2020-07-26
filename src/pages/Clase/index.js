@@ -9,7 +9,7 @@ import { ReduxService, Firebase } from '../../utils';
 import './styles.css';
 
 export default function ClasePage() {
-  const { id } = useParams();
+  const { uid } = useParams();
   const { session, classes } = useShallowEqualSelector({
     session: ReduxService.session.selectors.active,
     classes: ReduxService.classes.selectors.list,
@@ -18,20 +18,20 @@ export default function ClasePage() {
   const [claseActiva, setClaseActiva] = useState({});
 
   useEffect(() => {
-    if (id) {
-      const clase = classes.filter((c) => c.id === id)[0];
+    if (uid) {
+      const clase = classes.filter((c) => c.uid === uid)[0];
       if (clase) {
         setClaseActiva(clase);
       } else {
         window.location.replace('/');
       }
     }
-  }, [id, classes]);
+  }, [classes, uid]);
 
   const eliminarClase = useCallback(() => {
     const result = window.confirm('¿De verdad quieres eliminar esta clase?');
     if (result) {
-      Firebase.classes.delete(claseActiva.id);
+      Firebase.classes.delete(claseActiva.uid);
     }
   }, [claseActiva]);
 

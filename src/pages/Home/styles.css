@@ -1,7 +1,15 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100vh;
+}
+
 .home-body {
   display: flex;
   flex: 1;
   flex-direction: 'row';
+  height: 100%;
 }
 
 .home-component-left {

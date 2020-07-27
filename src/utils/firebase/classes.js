@@ -27,3 +27,7 @@ export async function createClass(data) {
     .doc(claseRef.id)
     .set({ ...data, uid: claseRef.id });
 }
+
+export function updateClase(uid, change) {
+  return getClassesReference().doc(uid).update(change);
+}

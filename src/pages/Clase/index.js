@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import { Header } from '../../components';
 
@@ -42,7 +42,9 @@ export default function ClasePage() {
         <h1 className="clase-page-title">{claseActiva.nombre}</h1>
         {session.admin && (
           <div className="clase-page-action-container">
-            <input type="button" value="Editar clase" />
+            <Link className="editar-clase-link" to={`/editarclase/${claseActiva.uid}`}>
+              <input type="button" value="Editar clase" />
+            </Link>
             <input
               onClick={eliminarClase}
               className="clase-page-eliminar"

@@ -9,12 +9,16 @@ import {
   NuevaClasePage,
 } from '../pages';
 import '../App.css';
+import EditarClase from '../pages/EditarClase';
 
 export default function Navigator() {
   return (
     <Router>
       <div>
         <Switch>
+          <Route path="/editarclase/:uid">
+            <EditarClase />
+          </Route>
           <Route path="/nuevaclase">
             <NuevaClasePage />
           </Route>

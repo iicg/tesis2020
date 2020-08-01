@@ -7,6 +7,7 @@ import {
   NewAlumno,
   EditarAlumnoPage,
   NuevaClasePage,
+  PerfilPage,
 } from '../pages';
 import '../App.css';
 import EditarClase from '../pages/EditarClase';
@@ -16,6 +17,9 @@ export default function Navigator() {
     <Router>
       <div>
         <Switch>
+          <Route path="/perfil">
+            <PerfilPage />
+          </Route>
           <Route path="/editarclase/:uid">
             <EditarClase />
           </Route>

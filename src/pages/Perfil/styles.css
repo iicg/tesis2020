@@ -1,0 +1,17 @@
+.perfil-container {
+  flex: 1;
+  height: 100vh;
+  background-color: #181a1e;
+}
+
+.perfil-page-content {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-right: 20vw;
+  padding-left: 20vw;
+}
+
+.perfil-page-title {
+  color: white;
+  margin: 0;
+}

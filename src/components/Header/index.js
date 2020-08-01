@@ -19,8 +19,13 @@ export default function Header() {
       </Link>
       <div className="header-middle" />
       <div className="header-right">
-        <h4 onClick={signOut} className="header-nombre">
-          {nombre} [cerrar sesion]
+        <div>
+          <Link className="header-perfil" to="/perfil">
+            <button>{nombre}</button>
+          </Link>
+        </div>
+        <h4 onClick={signOut} className="header-sesion">
+          cerrar sesion
         </h4>
       </div>
     </header>

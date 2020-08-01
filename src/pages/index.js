@@ -5,3 +5,4 @@ export { default as ClasePage } from './Clase';
 export { default as NewAlumno } from './NewAlumno';
 export { default as EditarAlumnoPage } from './EditarAlumno';
 export { default as NuevaClasePage } from './NuevaClase';
+export { default as PerfilPage } from './Perfil';

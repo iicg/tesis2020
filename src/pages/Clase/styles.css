@@ -28,8 +28,6 @@
 }
 
 .clase-page-action-container input {
-  background-color: #adf83585;
-  color: white;
   padding: 0.7em 1.5em 0.7em 1.5em;
   margin-right: 1em;
   border: none;
@@ -43,8 +41,21 @@
   transform: scale(0.99);
 }
 
+.clase-page-editar {
+  color: black;
+}
+
 .clase-page-eliminar {
   background-color: #eb4034;
   color: white;
-  font-weight: bold;
+}
+
+.clase-page-reservar {
+  background-color: #82d103a4;
+  color: white;
+}
+
+.clase-page-reservar-disabled {
+  opacity: 0.5;
+  cursor: none;
 }

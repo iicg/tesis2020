@@ -10,29 +10,44 @@ import './styles.css';
 
 export default function ClasePage() {
   const { uid } = useParams();
-  const { session, classes } = useShallowEqualSelector({
+  const { session, classes, reservas } = useShallowEqualSelector({
     session: ReduxService.session.selectors.active,
     classes: ReduxService.classes.selectors.list,
+    reservas: ReduxService.reservas.selectors.list,
   });
 
   const [claseActiva, setClaseActiva] = useState({});
+  const [reservado, setReservado] = useState(false);
 
   useEffect(() => {
     if (uid) {
       const clase = classes.filter((c) => c.uid === uid)[0];
       if (clase) {
         setClaseActiva(clase);
+        const reservasFiltradas = reservas.filter((reserva) => reserva.idClase === claseActiva.uid);
+        setReservado(Boolean(reservasFiltradas.length));
       } else {
         window.location.replace('/');
       }
     }
-  }, [classes, uid]);
+  }, [claseActiva.uid, classes, reservas, uid]);
 
   const eliminarClase = useCallback(() => {
     const result = window.confirm('¿De verdad quieres eliminar esta clase?');
     if (result) {
       Firebase.classes.delete(claseActiva.uid);
     }
+  }, [claseActiva]);
+
+  const reservarClase = useCallback(async () => {
+    setReservado(true);
+    Firebase.reservas
+      .create(claseActiva)
+      .catch(() =>
+        ReduxService.dispatch(
+          ReduxService.session.actions.update({ toastMessage: 'Ha ocurrido un error' }),
+        ),
+      );
   }, [claseActiva]);
 
   return (
@@ -43,13 +58,20 @@ export default function ClasePage() {
         {session.admin && (
           <div className="clase-page-action-container">
             <Link className="editar-clase-link" to={`/editarclase/${claseActiva.uid}`}>
-              <input type="button" value="Editar clase" />
+              <input className="clase-page-editar" type="button" value="Editar clase" />
             </Link>
             <input
               onClick={eliminarClase}
               className="clase-page-eliminar"
               type="button"
               value="Eliminar clase"
+            />
+            <input
+              onClick={reservarClase}
+              disabled={reservado}
+              className={`${reservado && 'clase-page-reservar-disabled'} clase-page-reservar`}
+              type="button"
+              value={reservado ? 'Clase reservada' : 'Reservar clase'}
             />
           </div>
         )}

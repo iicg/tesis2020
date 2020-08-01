@@ -15,6 +15,7 @@ export default function ContainerClases() {
 
   useEffect(() => {
     Firebase.classes.getAll();
+    Firebase.reservas.getAll();
   }, []);
 
   return (

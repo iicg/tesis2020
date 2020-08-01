@@ -11,6 +11,7 @@ import {
 } from '../pages';
 import '../App.css';
 import EditarClase from '../pages/EditarClase';
+import { Toast } from '../components';
 
 export default function Navigator() {
   return (
@@ -42,6 +43,7 @@ export default function Navigator() {
             <LoginPage />
           </Route>
         </Switch>
+        <Toast />
       </div>
     </Router>
   );

@@ -3,6 +3,7 @@ import { CLEAR_SESSION, SET_SESSION, UPDATE_SESSION } from './constants';
 
 const initialState = {
   authenticated: false,
+  toastMessage: '',
 };
 
 export default (state = initialState, action) => {

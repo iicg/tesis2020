@@ -8,7 +8,7 @@ function getUserReference() {
 
 export function signIn(email, password) {
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-  firebase.auth().signInWithEmailAndPassword(email, password);
+  return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
 function formatSession(user) {

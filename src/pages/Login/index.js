@@ -9,9 +9,13 @@ import logo from '../../img/logo.png';
 import { Firebase, ReduxService } from '../../utils';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
+import messages from './messages';
+import { LoadingIndicator } from '../../components';
+
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
 
   const history = useHistory();
@@ -23,7 +27,13 @@ export default function LoginPage() {
   }, [session, history]);
 
   const onPressLogin = useCallback(() => {
-    Firebase.session.signIn(email, password);
+    setLoading(true);
+    Firebase.session.signIn(email, password).catch((e) => {
+      ReduxService.dispatch(
+        ReduxService.session.actions.update({ toastMessage: messages[e.code] }),
+      );
+      setLoading(false);
+    });
   }, [email, password]);
 
   return (
@@ -59,17 +69,20 @@ export default function LoginPage() {
                 required
               />
             </div>
-            <input
-              className="login-button-sesion"
-              type="submit"
-              value="Iniciar sesion"
-              onClick={onPressLogin}
-            />
+            {loading ? (
+              <LoadingIndicator />
+            ) : (
+              <input
+                className="login-button-sesion"
+                type="submit"
+                value="Iniciar sesion"
+                onClick={onPressLogin}
+              />
+            )}
           </div>
         </div>
         <div className="login-left-footer" />
       </div>
-
       <div className="login-right">
         <img src={loginFondo} alt="crossfit" />
       </div>

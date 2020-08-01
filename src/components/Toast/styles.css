@@ -1,0 +1,15 @@
+.toast-container {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  padding: 12px 20px 12px 20px;
+  background-color: #ffa9a9;
+  border-radius: 6px;
+}
+
+.toast-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b0404;
+}

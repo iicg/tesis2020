@@ -14,10 +14,10 @@ export default function Perfil() {
   return (
     <div className="perfil-container">
       <Header />
-      <Link to="/home">
-        <button className="atras">volver</button>
-      </Link>
       <div className="perfil-page-content">
+        <Link to="/home">
+          <button className="atras">volver</button>
+        </Link>
         <div className="perfil-nombre">
           <h1 className="perfil-page-title">{nombre}</h1>
           <h1 className="perfil-page-title">{apellido}</h1>

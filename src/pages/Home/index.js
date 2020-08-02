@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import { Sidebar, Header, ContainerClases, ContainerAlumnos } from '../../components';
+import {
+  Sidebar,
+  Header,
+  ContainerClases,
+  ContainerAlumnos,
+  ContainerReservas,
+} from '../../components';
 
 import './styles.css';
 
@@ -17,14 +23,25 @@ export default function HomePage() {
     }
   }, [session]);
 
+  const getCurrentScene = () => {
+    switch (opcion) {
+      case 0:
+        return <ContainerClases />;
+      case 1:
+        return <ContainerAlumnos />;
+      case 2:
+        return <ContainerReservas />;
+      default:
+        return <ContainerClases />;
+    }
+  };
+
   return (
     <div className="home-container">
       <Header />
       <div className="home-body">
-        <Sidebar admin={session.admin} setOpcion={setOpcion} />
-        <div className="home-component-right">
-          {opcion === 0 ? <ContainerClases /> : <ContainerAlumnos />}
-        </div>
+        <Sidebar opcion={opcion} admin={session.admin} setOpcion={setOpcion} />
+        <div className="home-component-right">{getCurrentScene()}</div>
       </div>
     </div>
   );

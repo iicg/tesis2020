@@ -53,10 +53,12 @@ export default function ClasePage() {
   return (
     <div className="clase-page-container">
       <Header />
-      <Link to="/home">
-        <button className="atras">volver</button>
-      </Link>
       <div className="clase-page-content">
+        <Link to="/home">
+          <button type="button" className="main-back-button">
+            <span className="material-icons">arrow_back</span>
+          </button>
+        </Link>
         <h1 className="clase-page-title">{claseActiva.nombre}</h1>
         {session.admin && (
           <div className="clase-page-action-container">

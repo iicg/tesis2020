@@ -32,12 +32,12 @@ export default function Sidebar(props) {
           </h5>
         </button>
       </div>
-      <div>
+      {/* <div>
         <button className="sidebar-logout" type="button">
           <span className="material-icons">power_settings_new</span>
           <h5>Cerrar sesión</h5>
         </button>
-      </div>
+      </div> */}
     </header>
   );
 }

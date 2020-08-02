@@ -18,15 +18,30 @@ export function getAllReservas() {
     .then((data) => ReduxService.dispatch(ReduxService.reservas.actions.set(data)));
 }
 
-export function createReserva(clase) {
+export async function createReserva(clase) {
+  const reservaRef = getReservasReference().doc();
   const reserva = {
+    uid: reservaRef.id,
     fechaReserva: firebase.firestore.Timestamp.fromDate(new Date()),
     idClase: clase.uid,
     nombreClase: clase.nombre,
   };
 
-  return getReservasReference()
-    .doc()
+  return reservaRef
     .set(reserva)
     .then(() => ReduxService.dispatch(ReduxService.reservas.actions.add(reserva)));
+}
+
+export function deleteReserva(idReserva) {
+  getReservasReference()
+    .doc(idReserva)
+    .delete()
+    .then(() => ReduxService.dispatch(ReduxService.reservas.actions.remove(idReserva)))
+    .catch(() =>
+      ReduxService.dispatch(
+        ReduxService.session.actions.update({
+          toastMessage: 'Hubo un error al eliminar la reserva.',
+        }),
+      ),
+    );
 }

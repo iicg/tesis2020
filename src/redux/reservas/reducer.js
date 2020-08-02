@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     case MODIFY_RESERVA:
       return state.map((reserva) => (reserva.id === action.payload.id ? action.payload : reserva));
     case REMOVE_RESERVA:
-      return state.filter((reserva) => reserva.id !== action.payload);
+      return state.filter((reserva) => reserva.uid !== action.payload);
     case SET_RESERVAS:
       return action.payload;
     case PURGE:

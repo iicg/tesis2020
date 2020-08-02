@@ -14,9 +14,13 @@ export default function ReservaItem(props) {
   }, [reserva]);
 
   return (
-    <div>
-      <h4>{reserva.nombreClase}</h4>
-      <input type="button" value="Borrar reserva" onClick={onPressDelete} />
+    <div className="reserva-item-container">
+      <h4 className="reserva-item-nombre">{reserva.nombreClase}</h4>
+      <div className="reserva-item-acciones">
+        <div className="borrar-reserva">
+          <input type="button" value="Borrar reserva" onClick={onPressDelete} />
+        </div>
+      </div>
     </div>
   );
 }

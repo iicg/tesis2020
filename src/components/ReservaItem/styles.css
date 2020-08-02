@@ -1,0 +1,72 @@
+.reserva-item-container {
+  background-color: #81818146;
+  width: 100%;
+  border-radius: 6px;
+  transition-duration: 250ms;
+  user-select: none;
+  cursor: default;
+  -webkit-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.3);
+}
+
+.reserva-item-container:hover {
+  transform: scale(1.02);
+  background-color: #81818160;
+}
+
+.reserva-item-nombre {
+  margin: 8px 12px 0px 12px;
+  color: white;
+}
+
+.reserva-item-descripcion {
+  color: white;
+  margin: 8px 12px 0px 12px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.reserva-item-acciones {
+  display: flex;
+  margin: 12px 8px 12px 8px;
+  justify-items: center;
+  align-items: center;
+}
+
+.reserva-item-acciones input {
+  display: flex;
+  flex: 1;
+  height: 25px;
+  cursor: pointer;
+  background-color: #ffffff36;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 4px;
+  border: none;
+  transition-duration: 250ms;
+  margin: 0px 4px 0px 4px;
+}
+
+.reserva-item-acciones input:hover {
+  transform: scale(1.03);
+  -webkit-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+}
+
+.borrar-reserva {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.borrar-reserva input {
+  background-color: #de3914;
+}
+
+.borrar-reserva input:disabled {
+  opacity: 0.3;
+  cursor: auto;
+}

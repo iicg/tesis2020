@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 import './styles.css';
 
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
-import { ReduxService, Firebase } from '../../utils';
+import { ReduxService } from '../../utils';
+import ReservaItem from '../ReservaItem';
 
 export default function ContainerClases() {
-  const { session, classes } = useShallowEqualSelector({
-    session: ReduxService.session.selectors.active,
-    classes: ReduxService.classes.selectors.list,
-  });
-
-  useEffect(() => {
-    Firebase.classes.getAll();
-    Firebase.reservas.getAll();
-  }, []);
+  const reservas = useShallowEqualSelector(ReduxService.reservas.selectors.list);
 
   return (
-    <div className="container-clases-container">
-      <h1 className="container-clases-titulo">MIS RESERVAS</h1>
-      <div className="container-clases-list-clases" />
+    <div className="container-reservas-container">
+      <h1 className="container-reservas-titulo">MIS RESERVAS</h1>
+      <div className="container-reservas-list-reservas">
+        {reservas.map((reserva) => (
+          <ReservaItem reserva={reserva} />
+        ))}
+      </div>
     </div>
   );
 }

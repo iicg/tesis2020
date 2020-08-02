@@ -6,3 +6,4 @@ export { default as Footer } from './Footer';
 export { default as Toast } from './Toast';
 export { default as LoadingIndicator } from './LoadingIndicator';
 export { default as ContainerReservas } from './ContainerReservas';
+export { default as ReservaItem } from './ReservaItem';

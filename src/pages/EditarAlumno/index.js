@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { DateTime } from 'luxon';
 
 import { Header } from '../../components';
 
 import './styles.css';
 
-import { ReduxService, Firebase } from '../../utils';
+import { ReduxService, Firebase, DateUtil } from '../../utils';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
 export default function EditarAlumno() {
@@ -17,6 +18,7 @@ export default function EditarAlumno() {
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [tipoPlan, setTipoPlan] = useState('free');
+  const [fechaIngreso, setFechaIngreso] = useState(new Date());
 
   const [loading, setLoading] = useState(false);
 
@@ -28,6 +30,7 @@ export default function EditarAlumno() {
       setApellido(alumno.apellido);
       setEmail(alumno.email);
       setTipoPlan(alumno.tipoPlan);
+      setFechaIngreso(DateUtil.timestampToDate(alumno.fechaIngreso?.seconds));
     } else {
       window.location.replace('/home');
     }
@@ -77,6 +80,9 @@ export default function EditarAlumno() {
               <div className="tituloDatoNewAl">
                 <h1>Tipo plan</h1>
               </div>
+              <div className="tituloDatoNewAl">
+                <h1>Fecha de creación</h1>
+              </div>
             </div>
             <div className="newDatosAl">
               <div className="datoNewAl">
@@ -123,6 +129,14 @@ export default function EditarAlumno() {
                   <option value="free">Free</option>
                   <option value="premium">Premium</option>
                 </select>
+              </div>
+              <div className="datoNewAl">
+                <input
+                  value={DateTime.fromJSDate(fechaIngreso).setLocale('es').toFormat('DDD')}
+                  type="text"
+                  placeholder="ejemplo@email.com"
+                  disabled
+                />
               </div>
             </div>
           </div>

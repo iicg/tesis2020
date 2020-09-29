@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { DateTime } from 'luxon';
+
 import { Header } from '../../components';
 
 import './styles.css';
@@ -27,10 +29,13 @@ export default function NewAlumno() {
       email,
       tipoPlan,
     };
-    Firebase.admin.createUser(data).then(() => {
-      alert('Usuario creado!');
-      setLoading(false);
-    });
+    Firebase.admin
+      .createUser(data)
+      .then(() => {
+        alert('Usuario creado!');
+        setLoading(false);
+      })
+      .catch((e) => alert(e.errorCode));
   };
 
   return (
@@ -57,6 +62,9 @@ export default function NewAlumno() {
               </div>
               <div className="tituloDatoNewAl">
                 <h1>Tipo plan</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Fecha de creación</h1>
               </div>
             </div>
             <div className="newDatosAl">
@@ -104,6 +112,13 @@ export default function NewAlumno() {
                   <option value="free">Free</option>
                   <option value="premium">Premium</option>
                 </select>
+              </div>
+              <div className="datoNewAl">
+                <input
+                  value={DateTime.local().setLocale('es').toFormat('DDD')}
+                  type="text"
+                  disabled
+                />
               </div>
             </div>
           </div>

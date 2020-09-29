@@ -1,4 +1,3 @@
-import * as R from 'ramda';
 import { PURGE } from 'redux-persist';
 
 import {

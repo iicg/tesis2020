@@ -31,6 +31,11 @@ export default function AlumnoItem(props) {
       <h3 className="alumno-item-nombre">
         {alumno.nombre} {alumno.apellido}
       </h3>
+      {alumno.admin && (
+        <div className="alumno-item-admin-tag">
+          <h5>Admin</h5>
+        </div>
+      )}
       <p className="alumno-item-descripcion">RUT {alumno.rut}</p>
       <h5 className="alumno-item-descripcion">Tipo de plan: {alumno.tipoPlan}</h5>
       <div className="alumno-item-acciones">

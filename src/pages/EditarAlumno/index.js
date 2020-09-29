@@ -19,6 +19,7 @@ export default function EditarAlumno() {
   const [email, setEmail] = useState('');
   const [tipoPlan, setTipoPlan] = useState('free');
   const [fechaIngreso, setFechaIngreso] = useState(new Date());
+  const [tipoUsuario, setTipoUsuario] = useState(false); // true => admin, false => cliente
 
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +32,7 @@ export default function EditarAlumno() {
       setEmail(alumno.email);
       setTipoPlan(alumno.tipoPlan);
       setFechaIngreso(DateUtil.timestampToDate(alumno.fechaIngreso?.seconds));
+      setTipoUsuario(alumno.admin);
     } else {
       window.location.replace('/home');
     }
@@ -82,6 +84,9 @@ export default function EditarAlumno() {
               </div>
               <div className="tituloDatoNewAl">
                 <h1>Fecha de creación</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Tipo usuario</h1>
               </div>
             </div>
             <div className="newDatosAl">
@@ -137,6 +142,15 @@ export default function EditarAlumno() {
                   placeholder="ejemplo@email.com"
                   disabled
                 />
+              </div>
+              <div className="datoNewAl">
+                <select
+                  value={tipoUsuario}
+                  onChange={(e) => setTipoUsuario(e.target.value)}
+                  className="datoNewAl-select">
+                  <option value>Administrador</option>
+                  <option value={false}>Cliente</option>
+                </select>
               </div>
             </div>
           </div>

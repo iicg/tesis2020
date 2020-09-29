@@ -15,6 +15,7 @@ export default function NewAlumno() {
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [tipoPlan, setTipoPlan] = useState('free');
+  const [tipoUsuario, setTipoUsuario] = useState(false); // true => admin, false => cliente
 
   const [loading, setLoading] = useState(false);
 
@@ -28,6 +29,7 @@ export default function NewAlumno() {
       apellido,
       email,
       tipoPlan,
+      admin: tipoUsuario,
     };
     Firebase.admin
       .createUser(data)
@@ -65,6 +67,9 @@ export default function NewAlumno() {
               </div>
               <div className="tituloDatoNewAl">
                 <h1>Fecha de creación</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Tipo usuario</h1>
               </div>
             </div>
             <div className="newDatosAl">
@@ -119,6 +124,15 @@ export default function NewAlumno() {
                   type="text"
                   disabled
                 />
+              </div>
+              <div className="datoNewAl">
+                <select
+                  value={tipoUsuario}
+                  onChange={(e) => setTipoUsuario(e.target.value)}
+                  className="datoNewAl-select">
+                  <option value>Administrador</option>
+                  <option value={false}>Cliente</option>
+                </select>
               </div>
             </div>
           </div>

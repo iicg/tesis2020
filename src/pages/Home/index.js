@@ -26,9 +26,9 @@ export default function HomePage() {
   const getCurrentScene = () => {
     switch (opcion) {
       case 0:
-        return <ContainerClases />;
-      case 1:
         return <ContainerAlumnos />;
+      case 1:
+        return <ContainerClases />;
       case 2:
         return <ContainerReservas />;
       default:

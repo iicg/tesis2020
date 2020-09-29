@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import { Header } from '../../components';
 
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
-import { ReduxService, Firebase } from '../../utils';
+import { ReduxService, Firebase, Constants } from '../../utils';
 
 import './styles.css';
 
@@ -39,16 +39,28 @@ export default function ClasePage() {
     }
   }, [claseActiva]);
 
+  const reservasRestantes = useMemo(() => {
+    const { tipoPlan } = session;
+    if (tipoPlan === 'free') {
+      return Constants.RESERVAS_MAX_FREE - reservas.length;
+    }
+    return Constants.RESERVAS_MAX_PREMIUM - reservas.length;
+  }, [reservas.length, session]);
+
   const reservarClase = useCallback(async () => {
-    setReservado(true);
-    Firebase.reservas
-      .create(claseActiva)
-      .catch(() =>
-        ReduxService.dispatch(
-          ReduxService.session.actions.update({ toastMessage: 'Ha ocurrido un error' }),
-        ),
-      );
-  }, [claseActiva]);
+    if (reservasRestantes > 0) {
+      setReservado(true);
+      Firebase.reservas
+        .create(claseActiva)
+        .catch(() =>
+          ReduxService.dispatch(
+            ReduxService.session.actions.update({ toastMessage: 'Ha ocurrido un error' }),
+          ),
+        );
+    } else {
+      alert('Has alcanzado el limite de reservas de tu plan.');
+    }
+  }, [claseActiva, reservasRestantes]);
 
   return (
     <div className="clase-page-container">

@@ -11,6 +11,12 @@
   text-transform: uppercase;
 }
 
+.container-reservas-subtitulo {
+  margin: 0.5em 0 0 0;
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
 .container-reservas-list-reservas {
   margin-top: 30px;
   display: grid;

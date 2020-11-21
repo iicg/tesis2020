@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './styles.css';
-
+import { ReduxService } from '../../utils';
+import { signOut } from '../../utils/firebase/session';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
 import logo from '../../img/logo.png';
-import { ReduxService } from '../../utils';
-import { signOut } from '../../utils/firebase/session';
+import avatar from '../../img/avatar.png';
+import './styles.css';
 
 export default function Header() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
@@ -18,16 +18,10 @@ export default function Header() {
         <img src={logo} alt="FitnessCity" />
       </Link>
       <div className="header-middle" />
-      <div className="header-right">
-        <div>
-          <Link className="header-perfil" to="/perfil">
-            <button>{nombre}</button>
-          </Link>
-        </div>
-        <h4 onClick={signOut} className="header-sesion">
-          cerrar sesion
-        </h4>
-      </div>
+      <Link to="/perfil" className="header-right">
+        <img src={avatar} alt="Perfil" className="header-avatar" />
+        <div className="header-perfil">Mi perfil</div>
+      </Link>
     </header>
   );
 }

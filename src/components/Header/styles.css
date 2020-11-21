@@ -27,25 +27,22 @@
   flex: 1;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding-inline: 2;
+  padding-right: 2em;
+}
+
+.header-avatar {
+  height: 40px;
+  width: 40px;
+  margin-right: 1em;
 }
 
 .header-perfil {
-  text-align: center;
-  border-radius: 5px;
-  margin-right: 20px;
-}
-
-.header-perfil button {
-  border: none;
-  height: 30px;
-  width: 100px;
   color: white;
-  background-color: #adf83559;
-  cursor: pointer;
-  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .header-sesion {

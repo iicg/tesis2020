@@ -33,7 +33,7 @@ export default function ContainerCalendario() {
       <Link to={`/clase/${uid}`}>
         <div
           className="container-calendario-block"
-          style={{ width: columnaDia?.clientWidth, top: topOffset + 200 }}>
+          style={{ width: columnaDia?.clientWidth, height: duracion * 64, top: topOffset + 200 }}>
           <span className="container-calendario-block-titulo">{nombre}</span>
           <span className="container-calendario-block-hora">
             Inicio: <b>{horaInicio}</b>

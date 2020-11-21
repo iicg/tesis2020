@@ -1,0 +1,74 @@
+.container-calendario-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 92%;
+  padding: 2em;
+}
+
+.container-calendario-titulo {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.container-calendario {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin-top: 1em;
+  background-color: rgb(64, 65, 66);
+  border-radius: 16px;
+}
+
+.container-calendario-day-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(64, 65, 66);
+  border-radius: 16px;
+  border: rgba(0, 0, 0, 0.25) solid 1px;
+}
+
+.container-calendario-day-header {
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+.container-calendario-block {
+  display: flex;
+  flex-direction: column;
+  background-color: #82ab05af;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 250ms;
+  margin: 8px 0px;
+  position: absolute;
+  top: 200px;
+  padding: 0.5em 0;
+}
+
+.container-calendario-block:hover {
+  transform: scale(1.01);
+  background-color: #82ab05;
+}
+
+.container-calendario-block-titulo {
+  color: white;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0.5em;
+}
+
+.container-calendario-block-hora {
+  color: white;
+  margin: 0;
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0.8;
+  margin: 4px 0.5em;
+}

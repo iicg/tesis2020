@@ -6,6 +6,8 @@ import {
   ContainerClases,
   ContainerAlumnos,
   ContainerReservas,
+  ContainerPlanes,
+  ContainerCalendario,
 } from '../../components';
 
 import './styles.css';
@@ -15,7 +17,7 @@ import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector'
 
 export default function HomePage() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
-  const [opcion, setOpcion] = useState(0);
+  const [opcion, setOpcion] = useState(3);
 
   useEffect(() => {
     if (!session.authenticated) {
@@ -31,6 +33,10 @@ export default function HomePage() {
         return <ContainerClases />;
       case 2:
         return <ContainerReservas />;
+      case 3:
+        return <ContainerCalendario />;
+      case 4:
+        return <ContainerPlanes />;
       default:
         return <ContainerClases />;
     }

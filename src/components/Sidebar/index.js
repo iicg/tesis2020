@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './styles.css';
 
 export default function Sidebar(props) {
@@ -31,13 +31,23 @@ export default function Sidebar(props) {
             <span className="material-icons">bookmark_border</span> Reservas
           </h5>
         </button>
-      </div>
-      {/* <div>
-        <button className="sidebar-logout" type="button">
-          <span className="material-icons">power_settings_new</span>
-          <h5>Cerrar sesión</h5>
+        <button
+          className={`sidebar-button ${opcion === 3 && 'sidebar-button-selected'} `}
+          onClick={() => setOpcion(3)}
+          type="button">
+          <h5>
+            <span className="material-icons">calendar_today</span> Calendario
+          </h5>
         </button>
-      </div> */}
+        <button
+          className={`sidebar-button ${opcion === 4 && 'sidebar-button-selected'} `}
+          onClick={() => setOpcion(4)}
+          type="button">
+          <h5>
+            <span className="material-icons">request_quote</span> Planes
+          </h5>
+        </button>
+      </div>
     </header>
   );
 }

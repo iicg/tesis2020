@@ -31,3 +31,7 @@ export async function createClass(data) {
 export function updateClase(uid, change) {
   return getClassesReference().doc(uid).update(change);
 }
+
+export function getClassesFromArray(key, array) {
+  return getClassesReference().where('uid', 'in', array).get().then(extractSnapshotDocsData);
+}

@@ -1,5 +1,11 @@
 import { initFirebase } from './firebase';
-import { signIn, signOut, setupSessionListeners } from './session';
+import {
+  signIn,
+  signOut,
+  setupSessionListeners,
+  sendResetPasswordEmail,
+  setNewEmail,
+} from './session';
 import {
   getAllClasses,
   getClassesFromArray,
@@ -7,7 +13,7 @@ import {
   createClass,
   updateClase,
 } from './classes';
-import { getAllUsuarios, updateUsuario } from './users';
+import { getAllUsuarios, updateUsuario, getUsuario } from './users';
 import { getAllReservas, createReserva, deleteReserva } from './reservas';
 
 import { blockUser, unblockUser, createUser, updateUser } from './admin';
@@ -20,6 +26,8 @@ export default {
     signIn,
     signOut,
     setupListeners: setupSessionListeners,
+    resetPassword: sendResetPasswordEmail,
+    setNewEmail,
   },
   classes: {
     getAll: getAllClasses,
@@ -30,6 +38,7 @@ export default {
   },
   users: {
     getAll: getAllUsuarios,
+    get: getUsuario,
     update: updateUsuario,
   },
   reservas: {

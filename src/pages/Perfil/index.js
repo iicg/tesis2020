@@ -1,15 +1,61 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { useQuery } from 'react-query';
 
 import './styles.css';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
-import { ReduxService } from '../../utils';
+import { Constants, ReduxService, Firebase } from '../../utils';
 import { Header } from '../../components';
 
 export default function Perfil() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
-  const { nombre, rut, apellido, tipoPlan, email } = session;
+  const { data } = useQuery(['usuario', session.uid], Firebase.users.get);
+
+  const emailRef = useRef();
+  const [newEmail, setNewEmail] = useState(data?.email);
+
+  const telefonoRef = useRef();
+  const [newTelefono, setNewTelefono] = useState('');
+
+  const direccionRef = useRef();
+  const [newDireccion, setNewDireccion] = useState('');
+
+  const preexistenciaRef = useRef();
+  const [newPreexistencia, setNewPreexistencia] = useState('');
+
+  useEffect(() => {
+    setNewEmail(data?.email);
+    setNewTelefono(data?.telefono);
+    setNewDireccion(data?.direccion);
+    setNewPreexistencia(data?.preexistencia);
+  }, [data]);
+
+  const onSaveField = async (field, value) => {
+    Firebase.users.update(session.uid, { [field]: value }).then(() => {
+      ReduxService.dispatch(
+        ReduxService.session.actions.update({ toastMessage: 'Cambio guardado exitosamente' }),
+      );
+    });
+  };
+
+  const onPressEditContraseña = () => {
+    Firebase.session.resetPassword(data?.email);
+  };
+
+  const saveNewEmail = async () => {
+    if (newEmail !== data?.email) {
+      Firebase.session.setNewEmail(newEmail).catch(({ code }) => {
+        ReduxService.dispatch(
+          ReduxService.session.actions.update({ toastMessage: Constants.ERRORES[code] }),
+        );
+        setNewEmail(data?.email);
+      });
+    }
+  };
 
   return (
     <div className="perfil-container">
@@ -21,12 +67,103 @@ export default function Perfil() {
           </button>
         </Link>
         <div className="perfil-nombre">
-          <h1 className="perfil-page-title">{nombre}</h1>
-          <h1 className="perfil-page-title">{apellido}</h1>
+          <h1 className="perfil-page-title">
+            {data?.nombre} {data?.apellido}
+          </h1>
         </div>
-        <h3 className="perfil-page-title">{rut}</h3>
-        <h4 className="perfil-page-title">email: {email}</h4>
-        <h5 className="perfil-page-title">tipo de plan: {tipoPlan}</h5>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="rut">RUT</label>
+            <input disabled id="rut" value={data?.rut} type="text" />
+          </div>
+        </div>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="email">Correo electrónico</label>
+            <input
+              ref={emailRef}
+              id="email"
+              value={newEmail}
+              onChange={({ target }) => setNewEmail(target.value)}
+              type="text"
+              onBlur={() => {
+                saveNewEmail();
+                onSaveField('email', newEmail);
+              }}
+            />
+          </div>
+          <span onClick={() => emailRef.current.focus()} className="material-icons">
+            create
+          </span>
+        </div>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="password">Contraseña</label>
+            <input disabled id="password" value="• • • • • • • •" type="text" />
+          </div>
+          <span onClick={onPressEditContraseña} className="material-icons">
+            create
+          </span>
+        </div>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="telefono">Télefono</label>
+            <input
+              ref={telefonoRef}
+              id="telefono"
+              value={newTelefono}
+              onChange={({ target }) => setNewTelefono(target.value)}
+              type="text"
+              onBlur={() => onSaveField('telefono', newTelefono)}
+            />
+          </div>
+          <span onClick={() => telefonoRef.current.focus()} className="material-icons">
+            create
+          </span>
+        </div>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="direccion">Dirección</label>
+            <input
+              ref={direccionRef}
+              id="direccion"
+              value={newDireccion}
+              onChange={({ target }) => setNewDireccion(target.value)}
+              type="text"
+              onBlur={() => onSaveField('direccion', newDireccion)}
+            />
+          </div>
+          <span onClick={() => direccionRef.current.focus()} className="material-icons">
+            create
+          </span>
+        </div>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="tipoPlan">Tipo de plan</label>
+            <input
+              disabled
+              id="tipoPlan"
+              value={Constants.TIPOS_PLAN[data?.tipoPlan]}
+              type="text"
+            />
+          </div>
+        </div>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="preexistencia">Preexistencia</label>
+            <input
+              ref={preexistenciaRef}
+              id="preexistencia"
+              value={newPreexistencia}
+              onChange={({ target }) => setNewPreexistencia(target.value)}
+              type="text"
+              onBlur={() => onSaveField('preexistencia', newPreexistencia)}
+            />
+          </div>
+          <span onClick={() => preexistenciaRef.current.focus()} className="material-icons">
+            create
+          </span>
+        </div>
       </div>
     </div>
   );

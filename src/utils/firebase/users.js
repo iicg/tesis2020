@@ -14,6 +14,18 @@ export function getAllUsuarios() {
     .then((data) => ReduxService.dispatch(ReduxService.users.actions.set(data)));
 }
 
+export function getUsuario(key, uid) {
+  return getUsersReference()
+    .doc(uid)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        return doc.data();
+      }
+      return null;
+    });
+}
+
 export function updateUsuario(uid, change) {
-  getUsersReference().doc(uid).update(change);
+  return getUsersReference().doc(uid).update(change);
 }

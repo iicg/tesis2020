@@ -17,7 +17,7 @@ import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector'
 
 export default function HomePage() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
-  const [opcion, setOpcion] = useState(3);
+  const [opcion, setOpcion] = useState(0);
 
   useEffect(() => {
     if (!session.authenticated) {
@@ -28,9 +28,9 @@ export default function HomePage() {
   const getCurrentScene = () => {
     switch (opcion) {
       case 0:
-        return <ContainerAlumnos />;
-      case 1:
         return <ContainerClases />;
+      case 1:
+        return <ContainerAlumnos />;
       case 2:
         return <ContainerReservas />;
       case 3:

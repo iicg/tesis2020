@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 
 export default function Sidebar(props) {
-  const { admin, opcion, setOpcion } = props;
+  const { opcion, setOpcion } = props;
 
   return (
     <div className="left-container">

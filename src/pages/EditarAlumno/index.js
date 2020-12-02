@@ -17,7 +17,10 @@ export default function EditarAlumno() {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
-  const [tipoPlan, setTipoPlan] = useState('free');
+  const [direccion, setDireccion] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [preexistencia, setPreexistencia] = useState('');
+  const [tipoPlan, setTipoPlan] = useState('inicial');
   const [fechaIngreso, setFechaIngreso] = useState(new Date());
   const [tipoUsuario, setTipoUsuario] = useState(false); // true => admin, false => cliente
 
@@ -33,6 +36,9 @@ export default function EditarAlumno() {
       setTipoPlan(alumno.tipoPlan);
       setFechaIngreso(DateUtil.timestampToDate(alumno.fechaIngreso?.seconds));
       setTipoUsuario(alumno.admin);
+      setDireccion(alumno.direccion);
+      setTelefono(alumno.telefono);
+      setPreexistencia(alumno.preexistencia);
     } else {
       window.location.replace('/home');
     }
@@ -49,6 +55,9 @@ export default function EditarAlumno() {
       apellido,
       email,
       tipoPlan,
+      telefono,
+      direccion,
+      preexistencia,
     };
 
     Firebase.admin.updateUser(data).then(() => {
@@ -80,6 +89,12 @@ export default function EditarAlumno() {
                 <h1>Email</h1>
               </div>
               <div className="tituloDatoNewAl">
+                <h1>Teléfono</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Dirección</h1>
+              </div>
+              <div className="tituloDatoNewAl">
                 <h1>Tipo plan</h1>
               </div>
               <div className="tituloDatoNewAl">
@@ -87,6 +102,9 @@ export default function EditarAlumno() {
               </div>
               <div className="tituloDatoNewAl">
                 <h1>Tipo usuario</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Preexistencia</h1>
               </div>
             </div>
             <div className="newDatosAl">
@@ -127,12 +145,32 @@ export default function EditarAlumno() {
                 />
               </div>
               <div className="datoNewAl">
+                <input
+                  value={telefono}
+                  onChange={(e) => setTelefono(e.target.value)}
+                  type="text"
+                  placeholder="+56912345678"
+                  required
+                />
+              </div>
+              <div className="datoNewAl">
+                <input
+                  value={direccion}
+                  onChange={(e) => setDireccion(e.target.value)}
+                  type="text"
+                  placeholder="Av. Principal #123"
+                  required
+                />
+              </div>
+              <div className="datoNewAl">
                 <select
                   value={tipoPlan}
                   onChange={(e) => setTipoPlan(e.target.value)}
                   className="datoNewAl-select">
-                  <option value="free">Free</option>
-                  <option value="premium">Premium</option>
+                  <option value="inicial">Plan inicial</option>
+                  <option value="estudiante">Plan estudiante</option>
+                  <option value="intermedio">Plan intermedio</option>
+                  <option value="premium">Plan pro</option>
                 </select>
               </div>
               <div className="datoNewAl">
@@ -151,6 +189,14 @@ export default function EditarAlumno() {
                   <option value>Administrador</option>
                   <option value={false}>Cliente</option>
                 </select>
+              </div>
+              <div className="datoNewAl">
+                <input
+                  value={preexistencia}
+                  onChange={(e) => setPreexistencia(e.target.value)}
+                  type="text"
+                  required
+                />
               </div>
             </div>
           </div>

@@ -14,7 +14,10 @@ export default function NewAlumno() {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
-  const [tipoPlan, setTipoPlan] = useState('free');
+  const [direccion, setDireccion] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [preexistencia, setPreexistencia] = useState('');
+  const [tipoPlan, setTipoPlan] = useState('inicial');
   const [tipoUsuario, setTipoUsuario] = useState(false); // true => admin, false => cliente
 
   const [loading, setLoading] = useState(false);
@@ -30,6 +33,9 @@ export default function NewAlumno() {
       email,
       tipoPlan,
       admin: tipoUsuario,
+      telefono,
+      direccion,
+      preexistencia,
     };
     Firebase.admin
       .createUser(data)
@@ -37,7 +43,7 @@ export default function NewAlumno() {
         alert('Usuario creado!');
         setLoading(false);
       })
-      .catch((e) => alert(e.errorCode));
+      .catch((e) => alert(e));
   };
 
   return (
@@ -63,6 +69,12 @@ export default function NewAlumno() {
                 <h1>Email</h1>
               </div>
               <div className="tituloDatoNewAl">
+                <h1>Teléfono</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Dirección</h1>
+              </div>
+              <div className="tituloDatoNewAl">
                 <h1>Tipo plan</h1>
               </div>
               <div className="tituloDatoNewAl">
@@ -70,6 +82,9 @@ export default function NewAlumno() {
               </div>
               <div className="tituloDatoNewAl">
                 <h1>Tipo usuario</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Preexistencia</h1>
               </div>
             </div>
             <div className="newDatosAl">
@@ -110,12 +125,32 @@ export default function NewAlumno() {
                 />
               </div>
               <div className="datoNewAl">
+                <input
+                  value={telefono}
+                  onChange={(e) => setTelefono(e.target.value)}
+                  type="text"
+                  placeholder="+56912345678"
+                  required
+                />
+              </div>
+              <div className="datoNewAl">
+                <input
+                  value={direccion}
+                  onChange={(e) => setDireccion(e.target.value)}
+                  type="text"
+                  placeholder="Av. Principal #123"
+                  required
+                />
+              </div>
+              <div className="datoNewAl">
                 <select
                   value={tipoPlan}
                   onChange={(e) => setTipoPlan(e.target.value)}
                   className="datoNewAl-select">
-                  <option value="free">Free</option>
-                  <option value="premium">Premium</option>
+                  <option value="inicial">Plan inicial</option>
+                  <option value="estudiante">Plan estudiante</option>
+                  <option value="intermedio">Plan intermedio</option>
+                  <option value="premium">Plan pro</option>
                 </select>
               </div>
               <div className="datoNewAl">
@@ -133,6 +168,14 @@ export default function NewAlumno() {
                   <option value>Administrador</option>
                   <option value={false}>Cliente</option>
                 </select>
+              </div>
+              <div className="datoNewAl">
+                <input
+                  value={preexistencia}
+                  onChange={(e) => setPreexistencia(e.target.value)}
+                  type="text"
+                  required
+                />
               </div>
             </div>
           </div>

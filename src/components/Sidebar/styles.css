@@ -14,7 +14,7 @@
   border: none;
   cursor: pointer;
   margin: 4px auto;
-  padding: 12px 16px;
+  padding: 8px 16px;
   border-radius: 4px;
   transition-duration: 120ms;
 }
@@ -37,7 +37,7 @@
 .sidebar-button h5 {
   text-align: left;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   margin: 0;
   opacity: 0.7;

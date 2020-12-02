@@ -12,7 +12,7 @@ import {
 
 import './styles.css';
 
-import { ReduxService } from '../../utils';
+import { Firebase, ReduxService } from '../../utils';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
 export default function HomePage() {
@@ -46,7 +46,7 @@ export default function HomePage() {
     <div className="home-container">
       <Header />
       <div className="home-body">
-        <Sidebar opcion={opcion} admin={session.admin} setOpcion={setOpcion} />
+        <Sidebar opcion={opcion} salir={Firebase.session.signOut} setOpcion={setOpcion} />
         <div className="home-component-right">{getCurrentScene()}</div>
       </div>
     </div>

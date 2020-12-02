@@ -6,6 +6,7 @@
   background-color: #202a30;
   align-items: center;
   border-width: 0 1px 0 0;
+  justify-content: space-between;
 }
 
 .sidebar-button {
@@ -78,4 +79,24 @@
 .sidebar-text-selected {
   opacity: 1;
   font-weight: bold;
+}
+
+.sidebar-salir-button {
+  width: 100%;
+  background: red;
+  border: none;
+  cursor: pointer;
+  margin: 4px auto;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition-duration: 120ms;
+  display: flex;
+  font-size: 17px;
+  color: white;
+}
+
+.sidebar-salir-button span {
+  font-size: 17px;
+  padding-right: 8px;
+  color: white;
 }

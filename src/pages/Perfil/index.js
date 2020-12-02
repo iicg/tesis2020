@@ -1,14 +1,16 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useQuery } from 'react-query';
 
 import './styles.css';
+import { add, getDate, isBefore, setDate, sub, format, formatDistance } from 'date-fns';
+import { es } from 'date-fns/locale';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
 
-import { Constants, ReduxService, Firebase } from '../../utils';
+import { Constants, ReduxService, Firebase, DateUtil } from '../../utils';
 import { Header } from '../../components';
 
 export default function Perfil() {
@@ -56,6 +58,25 @@ export default function Perfil() {
       });
     }
   };
+
+  const proximaFechaPago = useMemo(() => {
+    if (data?.fechaIngreso) {
+      const fecha = DateUtil.timestampToDate(data.fechaIngreso);
+      const dia = getDate(fecha);
+      const proxFecha = sub(setDate(new Date(), dia), { days: 3 });
+      if (isBefore(proxFecha, new Date())) {
+        return `Próxima fecha de pago: ${format(add(proxFecha, { months: 1 }), 'dd/MM/yyyy', {
+          locale: es,
+        })} (dentro de ${formatDistance(add(proxFecha, { months: 1 }), new Date(), {
+          locale: es,
+        })})`;
+      }
+      return `Próxima fecha de pago: ${format(proxFecha, 'dd/MM/yyyy', {
+        locale: es,
+      })} (dentro de ${formatDistance(proxFecha, new Date(), { locale: es })})`;
+    }
+    return '';
+  }, [data]);
 
   return (
     <div className="perfil-container">
@@ -146,6 +167,7 @@ export default function Perfil() {
               value={Constants.TIPOS_PLAN[data?.tipoPlan]}
               type="text"
             />
+            <span>{proximaFechaPago}</span>
           </div>
         </div>
         <div className="perfil-page-detail">

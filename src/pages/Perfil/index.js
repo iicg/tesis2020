@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import { useQuery } from 'react-query';
 
-import './styles.css';
 import { add, getDate, isBefore, setDate, sub, format, formatDistance } from 'date-fns';
 import { es } from 'date-fns/locale';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
@@ -13,9 +12,14 @@ import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector'
 import { Constants, ReduxService, Firebase, DateUtil } from '../../utils';
 import { Header } from '../../components';
 
+import './styles.css';
+import ModalPerfil from './ModalPerfil';
+
 export default function Perfil() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
   const { data } = useQuery(['usuario', session.uid], Firebase.users.get);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const emailRef = useRef();
   const [newEmail, setNewEmail] = useState(data?.email);
@@ -29,19 +33,31 @@ export default function Perfil() {
   const preexistenciaRef = useRef();
   const [newPreexistencia, setNewPreexistencia] = useState('');
 
+  const pesoRef = useRef();
+  const [newPeso, setNewPeso] = useState('');
+
+  const alturaRef = useRef();
+  const [newAltura, setNewAltura] = useState('');
+
   useEffect(() => {
     setNewEmail(data?.email);
     setNewTelefono(data?.telefono);
     setNewDireccion(data?.direccion);
     setNewPreexistencia(data?.preexistencia);
+    setNewPeso(data?.peso);
+    setNewAltura(data?.altura);
   }, [data]);
 
   const onSaveField = async (field, value) => {
-    Firebase.users.update(session.uid, { [field]: value }).then(() => {
-      ReduxService.dispatch(
-        ReduxService.session.actions.update({ toastMessage: 'Cambio guardado exitosamente' }),
-      );
-    });
+    if (value) {
+      if (value.trim() !== '' || data[field] !== value.trim()) {
+        Firebase.users.update(session.uid, { [field]: value }).then(() => {
+          ReduxService.dispatch(
+            ReduxService.session.actions.update({ toastMessage: 'Cambio guardado exitosamente' }),
+          );
+        });
+      }
+    }
   };
 
   const onPressEditContraseña = () => {
@@ -87,10 +103,16 @@ export default function Perfil() {
             <span className="material-icons">arrow_back</span>
           </button>
         </Link>
-        <div className="perfil-nombre">
-          <h1 className="perfil-page-title">
+        <div className="perfil-page-title">
+          <h1 className="perfil-nombre">
             {data?.nombre} {data?.apellido}
           </h1>
+          <input
+            onClick={() => setModalVisible(true)}
+            type="button"
+            value="Revisar informe"
+            className="perfil-boton-informe"
+          />
         </div>
         <div className="perfil-page-detail">
           <div>
@@ -186,6 +208,48 @@ export default function Perfil() {
             create
           </span>
         </div>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="peso">Peso (en kilogramos)</label>
+            <input
+              ref={pesoRef}
+              id="peso"
+              value={newPeso}
+              onChange={({ target }) => setNewPeso(target.value)}
+              type="text"
+              pattern="[0-9]*"
+              onBlur={() => onSaveField('peso', newPeso)}
+            />
+          </div>
+          <span onClick={() => preexistenciaRef.current.focus()} className="material-icons">
+            create
+          </span>
+        </div>
+        <div className="perfil-page-detail">
+          <div>
+            <label htmlFor="altura">Altura (en centímetros)</label>
+            <input
+              ref={alturaRef}
+              id="altura"
+              value={newAltura}
+              onChange={({ target }) => setNewAltura(target.value)}
+              type="text"
+              pattern="[0-9]*"
+              maxLength={3}
+              onBlur={() => onSaveField('altura', newAltura)}
+            />
+          </div>
+          <span onClick={() => preexistenciaRef.current.focus()} className="material-icons">
+            create
+          </span>
+        </div>
+        <ModalPerfil
+          peso={data?.peso}
+          pesoInicial={data?.pesoInicial}
+          altura={data?.altura / 100}
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
       </div>
     </div>
   );

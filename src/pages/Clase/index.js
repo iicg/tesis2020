@@ -72,26 +72,28 @@ export default function ClasePage() {
           </button>
         </Link>
         <h1 className="clase-page-title">{claseActiva.nombre}</h1>
-        {session.admin && (
-          <div className="clase-page-action-container">
-            <Link className="editar-clase-link" to={`/editarclase/${claseActiva.uid}`}>
-              <input className="clase-page-editar" type="button" value="Editar clase" />
-            </Link>
-            <input
-              onClick={eliminarClase}
-              className="clase-page-eliminar"
-              type="button"
-              value="Eliminar clase"
-            />
-            <input
-              onClick={reservarClase}
-              disabled={reservado}
-              className={`${reservado && 'clase-page-reservar-disabled'} clase-page-reservar`}
-              type="button"
-              value={reservado ? 'Clase reservada' : 'Reservar clase'}
-            />
-          </div>
-        )}
+        <div className="clase-page-action-container">
+          {session.admin && (
+            <>
+              <Link className="editar-clase-link" to={`/editarclase/${claseActiva.uid}`}>
+                <input className="clase-page-editar" type="button" value="Editar clase" />
+              </Link>
+              <input
+                onClick={eliminarClase}
+                className="clase-page-eliminar"
+                type="button"
+                value="Eliminar clase"
+              />
+            </>
+          )}
+          <input
+            onClick={reservarClase}
+            disabled={reservado}
+            className={`${reservado && 'clase-page-reservar-disabled'} clase-page-reservar`}
+            type="button"
+            value={reservado ? 'Clase reservada' : 'Reservar clase'}
+          />
+        </div>
         <p className="clase-page-description">{claseActiva.descripcion}</p>
       </div>
     </div>

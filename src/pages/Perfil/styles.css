@@ -12,15 +12,33 @@
 }
 
 .perfil-page-title {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.perfil-nombre {
   color: white;
   margin-right: 10px;
   margin-block: 3px;
 }
 
-.perfil-nombre {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
+.perfil-boton-informe {
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  background-color: #75c709;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+  transition: 250ms;
+  cursor: pointer;
+}
+
+.perfil-boton-informe:hover {
+  background-color: #8ede26;
 }
 
 .perfil-nombre h1 {
@@ -99,4 +117,80 @@
   outline: none;
   border-radius: 4px;
   padding: 8px 4px;
+}
+
+.perfil-modal-titulo {
+  margin: 0;
+  padding: 0;
+  opacity: 0.7;
+  color: white;
+  font-size: 28px;
+}
+
+.perfil-modal-seccion {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1em 0;
+}
+
+.perfil-modal-seccion-icon {
+  margin-right: 0.5em;
+  color: white;
+  opacity: 0.8;
+}
+
+.perfil-modal-seccion-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-modal-seccion-label {
+  color: white;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.perfil-modal-seccion-value {
+  color: white;
+  font-size: 16px;
+  display: flex;
+}
+
+.perfil-modal-imc-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.perfil-modal-imc-box {
+  background-color: red;
+  padding: 0.75em 1em;
+  border-radius: 4px;
+}
+
+.perfil-modal-imc-box-icon {
+  font-size: 18px;
+  margin-right: 0.5em;
+}
+
+.perfil-modal-clases-container {
+  display: flex;
+  margin-top: 0.5em;
+}
+
+.perfil-modal-clase-chip {
+  padding: 4px 8px;
+  border-radius: 32px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-right: 0.5em;
+  transition: 250ms;
+}
+
+.perfil-modal-clase-chip span {
+  font-size: 12px;
+  color: white;
+}
+
+.perfil-modal-clase-chip:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }

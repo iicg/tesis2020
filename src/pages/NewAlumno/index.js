@@ -17,6 +17,8 @@ export default function NewAlumno() {
   const [direccion, setDireccion] = useState('');
   const [telefono, setTelefono] = useState('');
   const [preexistencia, setPreexistencia] = useState('');
+  const [pesoInicial, setPesoInicial] = useState('');
+  const [altura, setAltura] = useState('');
   const [tipoPlan, setTipoPlan] = useState('inicial');
   const [tipoUsuario, setTipoUsuario] = useState(false); // true => admin, false => cliente
 
@@ -36,6 +38,8 @@ export default function NewAlumno() {
       telefono,
       direccion,
       preexistencia,
+      peso: pesoInicial,
+      altura,
     };
     Firebase.admin
       .createUser(data)
@@ -85,6 +89,12 @@ export default function NewAlumno() {
               </div>
               <div className="tituloDatoNewAl">
                 <h1>Preexistencia</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Peso en kg</h1>
+              </div>
+              <div className="tituloDatoNewAl">
+                <h1>Altura en cm</h1>
               </div>
             </div>
             <div className="newDatosAl">
@@ -175,6 +185,26 @@ export default function NewAlumno() {
                   onChange={(e) => setPreexistencia(e.target.value)}
                   type="text"
                   required
+                />
+              </div>
+              <div className="datoNewAl">
+                <input
+                  value={pesoInicial}
+                  onChange={(e) => setPesoInicial(e.target.value)}
+                  type="text"
+                  required
+                  pattern="[0-9]*"
+                  maxLength={3}
+                />
+              </div>
+              <div className="datoNewAl">
+                <input
+                  value={altura}
+                  onChange={(e) => setAltura(e.target.value)}
+                  type="text"
+                  required
+                  pattern="[0-9]*"
+                  maxLength={3}
                 />
               </div>
             </div>

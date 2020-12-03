@@ -14,7 +14,7 @@ import {
   updateClase,
 } from './classes';
 import { getAllUsuarios, updateUsuario, getUsuario } from './users';
-import { getAllReservas, createReserva, deleteReserva } from './reservas';
+import { getAllReservas, createReserva, deleteReserva, queryAllReservas } from './reservas';
 
 import { blockUser, unblockUser, createUser, updateUser } from './admin';
 import { getTiposPlanes } from './planes';
@@ -45,6 +45,7 @@ export default {
     getAll: getAllReservas,
     create: createReserva,
     delete: deleteReserva,
+    queryAll: queryAllReservas,
   },
   planes: {
     getTipos: getTiposPlanes,

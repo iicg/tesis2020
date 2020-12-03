@@ -46,7 +46,12 @@ export default function HomePage() {
     <div className="home-container">
       <Header />
       <div className="home-body">
-        <Sidebar opcion={opcion} salir={Firebase.session.signOut} setOpcion={setOpcion} />
+        <Sidebar
+          admin={session.admin}
+          opcion={opcion}
+          salir={Firebase.session.signOut}
+          setOpcion={setOpcion}
+        />
         <div className="home-component-right">{getCurrentScene()}</div>
       </div>
     </div>

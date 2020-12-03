@@ -18,6 +18,10 @@ export function getAllReservas() {
     .then((data) => ReduxService.dispatch(ReduxService.reservas.actions.set(data)));
 }
 
+export function queryAllReservas() {
+  return getReservasReference().get().then(extractSnapshotDocsData);
+}
+
 export async function createReserva(clase) {
   const reservaRef = getReservasReference().doc();
   const reserva = {

@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 
 export default function Sidebar(props) {
-  const { opcion, salir, setOpcion } = props;
+  const { opcion, admin, salir, setOpcion } = props;
 
   return (
     <div className="left-container">
@@ -15,14 +15,16 @@ export default function Sidebar(props) {
             <span className="material-icons">fitness_center</span> Clases
           </h5>
         </button>
-        <button
-          className={`sidebar-button ${opcion === 1 && 'sidebar-button-selected'} `}
-          onClick={() => setOpcion(1)}
-          type="button">
-          <h5 className={opcion === 1 && 'sidebar-text-selected'}>
-            <span className="material-icons">school</span> Alumnos
-          </h5>
-        </button>
+        {admin && (
+          <button
+            className={`sidebar-button ${opcion === 1 && 'sidebar-button-selected'} `}
+            onClick={() => setOpcion(1)}
+            type="button">
+            <h5 className={opcion === 1 && 'sidebar-text-selected'}>
+              <span className="material-icons">school</span> Alumnos
+            </h5>
+          </button>
+        )}
         <button
           className={`sidebar-button ${opcion === 2 && 'sidebar-button-selected'} `}
           onClick={() => setOpcion(2)}

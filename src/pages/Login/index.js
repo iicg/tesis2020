@@ -3,7 +3,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import './styles.css';
 
 import { useHistory } from 'react-router-dom';
-import loginFondo from '../../img/fondoLogin.jpg';
+import fondoLogin from '../../img/fotologin.png';
 import logo from '../../img/logo.png';
 
 import { Firebase, ReduxService } from '../../utils';
@@ -84,7 +84,7 @@ export default function LoginPage() {
         <div className="login-left-footer" />
       </div>
       <div className="login-right">
-        <img src={loginFondo} alt="crossfit" />
+        <img src={fondoLogin} alt="crossfit" />
       </div>
     </div>
   );

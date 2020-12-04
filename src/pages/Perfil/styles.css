@@ -1,6 +1,7 @@
 .perfil-container {
   flex: 1;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background-color: #181a1e;
 }
 

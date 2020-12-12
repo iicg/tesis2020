@@ -6,9 +6,8 @@ function getUsersReference() {
   return firebase.firestore().collection('usuarios');
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export function getAllUsuarios() {
-  getUsersReference()
+  return getUsersReference()
     .get()
     .then(extractSnapshotDocsData)
     .then((data) => ReduxService.dispatch(ReduxService.users.actions.set(data)));
@@ -28,4 +27,20 @@ export function getUsuario(key, uid) {
 
 export function updateUsuario(uid, change) {
   return getUsersReference().doc(uid).update(change);
+}
+
+export async function checkRut(nuevoRut) {
+  const usuarios = await getUsersReference().get().then(extractSnapshotDocsData);
+  return usuarios.filter(({ rut }) => rut === nuevoRut);
+}
+
+export function getActiveUsers() {
+  return getUsersReference()
+    .where('fechaIngreso', '<', new Date())
+    .get()
+    .then(extractSnapshotDocsData);
+}
+
+export async function queryAllUsers() {
+  return getUsersReference().get().then(extractSnapshotDocsData);
 }

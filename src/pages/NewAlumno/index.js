@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 
 import { DateTime } from 'luxon';
 
@@ -23,6 +24,7 @@ export default function NewAlumno() {
   const [tipoUsuario, setTipoUsuario] = useState(false); // true => admin, false => cliente
 
   const [loading, setLoading] = useState(false);
+  const [errorRut, setErrorRut] = useState(false);
 
   const onPress = async (e) => {
     e.preventDefault();
@@ -49,6 +51,14 @@ export default function NewAlumno() {
       })
       .catch((e) => alert(e));
   };
+
+  const handleRutChange = debounce(async (newRut) => {
+    const usuariosConRut = await Firebase.users.checkRut(newRut);
+    if (usuariosConRut.length) {
+      alert('RUT YA EXISTE');
+      setRut('');
+    }
+  }, 500);
 
   return (
     <div className="newAl-body">
@@ -101,7 +111,10 @@ export default function NewAlumno() {
               <div className="datoNewAl">
                 <input
                   value={rut}
-                  onChange={(e) => setRut(e.target.value)}
+                  onChange={(e) => {
+                    handleRutChange(e.target.value);
+                    setRut(e.target.value);
+                  }}
                   type="text"
                   placeholder="12.345.678-9"
                   required

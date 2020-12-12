@@ -35,3 +35,7 @@ export function updateClase(uid, change) {
 export function getClassesFromArray(key, array) {
   return getClassesReference().where('uid', 'in', array).get().then(extractSnapshotDocsData);
 }
+
+export async function queryAllClasses() {
+  return getClassesReference().get().then(extractSnapshotDocsData);
+}

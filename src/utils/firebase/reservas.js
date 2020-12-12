@@ -31,16 +31,32 @@ export async function createReserva(clase) {
     nombreClase: clase.nombre,
   };
 
+  firebase
+    .firestore()
+    .collection('clases')
+    .doc(clase.uid)
+    .update({
+      alumnos: firebase.firestore.FieldValue.arrayUnion(ReduxService.getState().session.uid),
+    });
+
   return reservaRef
     .set(reserva)
     .then(() => ReduxService.dispatch(ReduxService.reservas.actions.add(reserva)));
 }
 
-export function deleteReserva(idReserva) {
+export function deleteReserva({ uid, idClase }) {
+  firebase
+    .firestore()
+    .collection('clases')
+    .doc(idClase)
+    .update({
+      alumnos: firebase.firestore.FieldValue.arrayRemove(ReduxService.getState().session.uid),
+    });
+
   getReservasReference()
-    .doc(idReserva)
+    .doc(uid)
     .delete()
-    .then(() => ReduxService.dispatch(ReduxService.reservas.actions.remove(idReserva)))
+    .then(() => ReduxService.dispatch(ReduxService.reservas.actions.remove(uid)))
     .catch(() =>
       ReduxService.dispatch(
         ReduxService.session.actions.update({

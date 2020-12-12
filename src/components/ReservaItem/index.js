@@ -10,7 +10,7 @@ export default function ReservaItem(props) {
   // reserva: nombreClase, fechaReserva (tipo fecha), idClase
 
   const onPressDelete = useCallback(() => {
-    Firebase.reservas.delete(reserva.uid);
+    Firebase.reservas.delete(reserva);
   }, [reserva]);
 
   return (

@@ -12,8 +12,9 @@ import {
   deleteClass,
   createClass,
   updateClase,
+  queryAllClasses,
 } from './classes';
-import { getAllUsuarios, updateUsuario, getUsuario } from './users';
+import { getAllUsuarios, updateUsuario, getUsuario, checkRut, queryAllUsers } from './users';
 import { getAllReservas, createReserva, deleteReserva, queryAllReservas } from './reservas';
 
 import { blockUser, unblockUser, createUser, updateUser } from './admin';
@@ -35,11 +36,14 @@ export default {
     delete: deleteClass,
     create: createClass,
     update: updateClase,
+    queryAll: queryAllClasses,
   },
   users: {
     getAll: getAllUsuarios,
     get: getUsuario,
     update: updateUsuario,
+    checkRut,
+    queryAll: queryAllUsers,
   },
   reservas: {
     getAll: getAllReservas,

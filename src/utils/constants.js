@@ -7,6 +7,21 @@ export default {
     intermedio: 'Plan Intermedio',
     pro: 'Plan PRO sín Límite',
   },
+  DIAS_SEMANA: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'],
+  MESES: [
+    'enero',
+    'febrero',
+    'marzo',
+    'abril',
+    'mayo',
+    'junio',
+    'julio',
+    'agosto',
+    'septiembre',
+    'octubre',
+    'noviembre',
+    'diciembre',
+  ],
   ERRORES: {
     'auth/requires-recent-login':
       'Esta operación requiere un inicio de sesión reciente. Vuelva a ingresar a su cuenta.',

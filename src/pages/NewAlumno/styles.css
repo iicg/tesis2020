@@ -147,8 +147,8 @@
   width: 100%;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.5);
-  border-style: none;
   transition-duration: 250ms;
+  border-style: none;
 }
 
 .datoNewAl input::placeholder {

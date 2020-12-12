@@ -49,6 +49,16 @@ export default function Sidebar(props) {
             <span className="material-icons">request_quote</span> Planes
           </h5>
         </button>
+        {admin && (
+          <button
+            className={`sidebar-button ${opcion === 5 && 'sidebar-button-selected'} `}
+            onClick={() => setOpcion(5)}
+            type="button">
+            <h5 className={opcion === 5 && 'sidebar-text-selected'}>
+              <span className="material-icons">trending_up</span> Reportes
+            </h5>
+          </button>
+        )}
       </div>
       <button onClick={salir} className="sidebar-salir-button" type="button">
         <span className="material-icons">power_settings_new</span> Cerrar sesión

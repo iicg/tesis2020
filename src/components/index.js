@@ -10,3 +10,4 @@ export { default as ContainerClases } from './ContainerClases';
 export { default as ContainerAlumnos } from './ContainerAlumnos';
 export { default as ContainerPlanes } from './ContainerPlanes';
 export { default as ContainerCalendario } from './ContainerCalendario';
+export { default as ContainerReportes } from './ContainerReportes';

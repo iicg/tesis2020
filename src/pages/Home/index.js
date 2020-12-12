@@ -18,7 +18,7 @@ import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector'
 
 export default function HomePage() {
   const session = useShallowEqualSelector(ReduxService.session.selectors.active);
-  const [opcion, setOpcion] = useState(5);
+  const [opcion, setOpcion] = useState(0);
 
   useEffect(() => {
     if (!session.authenticated) {

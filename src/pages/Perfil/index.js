@@ -194,7 +194,7 @@ export default function Perfil() {
         </div>
         <div className="perfil-page-detail">
           <div>
-            <label htmlFor="preexistencia">Preexistencia</label>
+            <label htmlFor="preexistencia">Preexistencia / enfermedades médicas</label>
             <input
               ref={preexistenciaRef}
               id="preexistencia"

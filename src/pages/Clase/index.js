@@ -52,6 +52,7 @@ export default function ClasePage() {
       setReservado(true);
       Firebase.reservas
         .create(claseActiva)
+        .then(() => alert('Clase reservada con exito.'))
         .catch(() =>
           ReduxService.dispatch(
             ReduxService.session.actions.update({ toastMessage: 'Ha ocurrido un error' }),

@@ -104,7 +104,7 @@ export default function EditarAlumno() {
                 <h1>Tipo usuario</h1>
               </div>
               <div className="tituloDatoNewAl">
-                <h1>Preexistencia</h1>
+                <h1>Preexistencia / enfermedades médicas</h1>
               </div>
             </div>
             <div className="newDatosAl">

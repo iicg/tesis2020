@@ -24,7 +24,6 @@ export default function NewAlumno() {
   const [tipoUsuario, setTipoUsuario] = useState(false); // true => admin, false => cliente
 
   const [loading, setLoading] = useState(false);
-  const [errorRut, setErrorRut] = useState(false);
 
   const onPress = async (e) => {
     e.preventDefault();
@@ -59,6 +58,27 @@ export default function NewAlumno() {
       setRut('');
     }
   }, 500);
+
+  const handleTelefonoChange = (value) => {
+    const re = /^[0-9\b]+$/;
+    if (value === '' || re.test(value)) {
+      setTelefono(value);
+    }
+  };
+
+  const handlePesoChange = (value) => {
+    const re = /^[0-9\b]+$/;
+    if (value === '' || re.test(value)) {
+      setPesoInicial(value);
+    }
+  };
+
+  const handleAlturaChange = (value) => {
+    const re = /^[0-9\b]+$/;
+    if (value === '' || re.test(value)) {
+      setAltura(value);
+    }
+  };
 
   return (
     <div className="newAl-body">
@@ -98,7 +118,7 @@ export default function NewAlumno() {
                 <h1>Tipo usuario</h1>
               </div>
               <div className="tituloDatoNewAl">
-                <h1>Preexistencia</h1>
+                <h1>Preexistencia / enfermedades médicas</h1>
               </div>
               <div className="tituloDatoNewAl">
                 <h1>Peso en kg</h1>
@@ -150,9 +170,9 @@ export default function NewAlumno() {
               <div className="datoNewAl">
                 <input
                   value={telefono}
-                  onChange={(e) => setTelefono(e.target.value)}
+                  onChange={(e) => handleTelefonoChange(e.target.value)}
                   type="text"
-                  placeholder="+56912345678"
+                  placeholder="912345678"
                   required
                 />
               </div>
@@ -203,7 +223,7 @@ export default function NewAlumno() {
               <div className="datoNewAl">
                 <input
                   value={pesoInicial}
-                  onChange={(e) => setPesoInicial(e.target.value)}
+                  onChange={(e) => handlePesoChange(e.target.value)}
                   type="text"
                   required
                   pattern="[0-9]*"
@@ -213,7 +233,7 @@ export default function NewAlumno() {
               <div className="datoNewAl">
                 <input
                   value={altura}
-                  onChange={(e) => setAltura(e.target.value)}
+                  onChange={(e) => handleAlturaChange(e.target.value)}
                   type="text"
                   required
                   pattern="[0-9]*"

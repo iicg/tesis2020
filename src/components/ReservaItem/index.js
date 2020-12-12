@@ -9,8 +9,8 @@ export default function ReservaItem(props) {
   const { reserva } = props;
   // reserva: nombreClase, fechaReserva (tipo fecha), idClase
 
-  const onPressDelete = useCallback(() => {
-    Firebase.reservas.delete(reserva);
+  const onPressDelete = useCallback(async () => {
+    Firebase.reservas.delete(reserva).then(() => alert('Reserva eliminada con exito.'));
   }, [reserva]);
 
   return (
@@ -24,7 +24,3 @@ export default function ReservaItem(props) {
     </div>
   );
 }
-
-ReservaItem.propTypes = {
-  reserva: PropTypes.object.isRequired,
-};

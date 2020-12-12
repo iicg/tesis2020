@@ -81,3 +81,24 @@
   font-size: 16px;
   vertical-align: top;
 }
+
+.container-planes-solicitar-container {
+  padding: 0.5em;
+  background-color: #70ba0f;
+  border-radius: 8px;
+  margin-top: 1em;
+  cursor: pointer;
+  transition: 250ms;
+}
+
+.container-planes-solicitar-container:hover {
+  background-color: #7bcc10;
+  transform: scale(1.05);
+}
+
+.container-planes-solicitar-container h3 {
+  margin: 0;
+  font-size: 16px;
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 0.8);
+}

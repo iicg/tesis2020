@@ -44,8 +44,8 @@ export async function createReserva(clase) {
     .then(() => ReduxService.dispatch(ReduxService.reservas.actions.add(reserva)));
 }
 
-export function deleteReserva({ uid, idClase }) {
-  firebase
+export async function deleteReserva({ uid, idClase }) {
+  await firebase
     .firestore()
     .collection('clases')
     .doc(idClase)
@@ -53,7 +53,7 @@ export function deleteReserva({ uid, idClase }) {
       alumnos: firebase.firestore.FieldValue.arrayRemove(ReduxService.getState().session.uid),
     });
 
-  getReservasReference()
+  return getReservasReference()
     .doc(uid)
     .delete()
     .then(() => ReduxService.dispatch(ReduxService.reservas.actions.remove(uid)))

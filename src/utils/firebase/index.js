@@ -13,11 +13,12 @@ import {
   createClass,
   updateClase,
   queryAllClasses,
+  checkNombre,
 } from './classes';
 import { getAllUsuarios, updateUsuario, getUsuario, checkRut, queryAllUsers } from './users';
 import { getAllReservas, createReserva, deleteReserva, queryAllReservas } from './reservas';
 
-import { blockUser, unblockUser, createUser, updateUser } from './admin';
+import { blockUser, unblockUser, createUser, updateUser, solicitarCambioPlan } from './admin';
 import { getTiposPlanes } from './planes';
 
 initFirebase();
@@ -37,6 +38,7 @@ export default {
     create: createClass,
     update: updateClase,
     queryAll: queryAllClasses,
+    checkNombre,
   },
   users: {
     getAll: getAllUsuarios,
@@ -59,5 +61,6 @@ export default {
     unblockUser,
     createUser,
     updateUser,
+    solicitarCambioPlan,
   },
 };

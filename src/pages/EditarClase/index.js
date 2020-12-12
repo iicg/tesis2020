@@ -7,6 +7,7 @@ import './styles.css';
 
 import { ReduxService, Firebase } from '../../utils';
 import useShallowEqualSelector from '../../shared/hooks/useShallowEqualSelector';
+import debounce from 'lodash.debounce';
 
 export default function EditarClase() {
   const clases = useShallowEqualSelector(ReduxService.classes.selectors.list);
@@ -48,6 +49,14 @@ export default function EditarClase() {
     });
   };
 
+  const handleNombreChange = debounce(async (newNombre) => {
+    const usuariosConRut = await Firebase.classes.checkNombre(newNombre);
+    if (usuariosConRut.length) {
+      alert(`¡${newNombre} YA EXISTE!`);
+      setNombre('');
+    }
+  }, 500);
+
   return (
     <div className="nueva-clase-body">
       <Header />
@@ -75,7 +84,10 @@ export default function EditarClase() {
               <div className="dato-nueva-clase">
                 <input
                   value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
+                  onChange={(e) => {
+                    setNombre(e.target.value);
+                    handleNombreChange(e.target.value);
+                  }}
                   type="text"
                   placeholder="Crossfit avanzado"
                   required

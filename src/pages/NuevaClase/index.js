@@ -6,6 +6,7 @@ import { Header } from '../../components';
 import './styles.css';
 
 import { Firebase } from '../../utils';
+import debounce from 'lodash.debounce';
 
 export default function NuevaClasePage() {
   const [nombre, setNombre] = useState('');
@@ -35,6 +36,14 @@ export default function NuevaClasePage() {
       .catch((e) => alert(e));
   };
 
+  const handleNombreChange = debounce(async (newNombre) => {
+    const usuariosConRut = await Firebase.classes.checkNombre(newNombre);
+    if (usuariosConRut.length) {
+      alert(`¡${newNombre} YA EXISTE!`);
+      setNombre('');
+    }
+  }, 500);
+
   return (
     <div className="nueva-clase-body">
       <Header />
@@ -62,7 +71,10 @@ export default function NuevaClasePage() {
               <div className="dato-nueva-clase">
                 <input
                   value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
+                  onChange={(e) => {
+                    setNombre(e.target.value);
+                    handleNombreChange(e.target.value);
+                  }}
                   type="text"
                   placeholder="Crossfit avanzado"
                   required

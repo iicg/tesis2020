@@ -17,6 +17,14 @@ export default function ContainerPlanes() {
   });
   const { data } = useQuery('todos', Firebase.planes.getTipos);
 
+  const cambioPlan = (tipoPlan) => {
+    Firebase.admin.solicitarCambioPlan({
+      nombre: session.nombre,
+      tipoPlan: session.tipoPlan,
+      nuevoTipoPlan: tipoPlan,
+    });
+  };
+
   const renderPlan = ([tipoPlan, { precio, color }]) => {
     return (
       <div
@@ -31,11 +39,17 @@ export default function ContainerPlanes() {
             {numberFormatter.format(Number(precio))}
             <span className="container-planes-plan-mes">/mes</span>
           </h1>
-          {session.tipoPlan === tipoPlan && (
+          {session.tipoPlan === tipoPlan ? (
             <div className="container-planes-mi-plan-container">
               <h3>
                 Mi plan <span className="material-icons">done</span>
               </h3>
+            </div>
+          ) : (
+            <div
+              onClick={() => cambioPlan(tipoPlan)}
+              className="container-planes-solicitar-container">
+              <h3>Solicitar cambio a este plan</h3>
             </div>
           )}
         </div>

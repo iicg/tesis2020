@@ -39,3 +39,8 @@ export function getClassesFromArray(key, array) {
 export async function queryAllClasses() {
   return getClassesReference().get().then(extractSnapshotDocsData);
 }
+
+export async function checkNombre(nuevoNombre) {
+  const clases = await getClassesReference().get().then(extractSnapshotDocsData);
+  return clases.filter(({ nombre }) => nombre.toLowerCase() === nuevoNombre.toLowerCase());
+}

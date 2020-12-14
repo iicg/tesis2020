@@ -25,7 +25,7 @@ export default function ContainerPlanes() {
     });
   };
 
-  const renderPlan = ([tipoPlan, { precio, color }]) => {
+  const renderPlan = ([tipoPlan, { precio, color, clases }]) => {
     return (
       <div
         className="container-planes-plan-container"
@@ -39,6 +39,7 @@ export default function ContainerPlanes() {
             {numberFormatter.format(Number(precio))}
             <span className="container-planes-plan-mes">/mes</span>
           </h1>
+          <h3 className="container-planes-plan-clases-mensuales">{clases}</h3>
           {session.tipoPlan === tipoPlan ? (
             <div className="container-planes-mi-plan-container">
               <h3>

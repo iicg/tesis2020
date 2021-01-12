@@ -25,30 +25,34 @@ export default function Sidebar(props) {
             </h5>
           </button>
         )}
-        <button
-          className={`sidebar-button ${opcion === 2 && 'sidebar-button-selected'} `}
-          onClick={() => setOpcion(2)}
-          type="button">
-          <h5 className={opcion === 2 && 'sidebar-text-selected'}>
-            <span className="material-icons">bookmark_border</span> Reservas
-          </h5>
-        </button>
-        <button
-          className={`sidebar-button ${opcion === 3 && 'sidebar-button-selected'} `}
-          onClick={() => setOpcion(3)}
-          type="button">
-          <h5 className={opcion === 3 && 'sidebar-text-selected'}>
-            <span className="material-icons">calendar_today</span> Calendario
-          </h5>
-        </button>
-        <button
-          className={`sidebar-button ${opcion === 4 && 'sidebar-button-selected'} `}
-          onClick={() => setOpcion(4)}
-          type="button">
-          <h5 className={opcion === 4 && 'sidebar-text-selected'}>
-            <span className="material-icons">request_quote</span> Planes
-          </h5>
-        </button>
+        {!admin && (
+          <>
+            <button
+              className={`sidebar-button ${opcion === 2 && 'sidebar-button-selected'} `}
+              onClick={() => setOpcion(2)}
+              type="button">
+              <h5 className={opcion === 2 && 'sidebar-text-selected'}>
+                <span className="material-icons">bookmark_border</span> Reservas
+              </h5>
+            </button>
+            <button
+              className={`sidebar-button ${opcion === 3 && 'sidebar-button-selected'} `}
+              onClick={() => setOpcion(3)}
+              type="button">
+              <h5 className={opcion === 3 && 'sidebar-text-selected'}>
+                <span className="material-icons">calendar_today</span> Calendario
+              </h5>
+            </button>
+            <button
+              className={`sidebar-button ${opcion === 4 && 'sidebar-button-selected'} `}
+              onClick={() => setOpcion(4)}
+              type="button">
+              <h5 className={opcion === 4 && 'sidebar-text-selected'}>
+                <span className="material-icons">request_quote</span> Planes
+              </h5>
+            </button>
+          </>
+        )}
         {admin && (
           <button
             className={`sidebar-button ${opcion === 5 && 'sidebar-button-selected'} `}

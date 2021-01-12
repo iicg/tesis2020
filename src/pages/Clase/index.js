@@ -87,13 +87,15 @@ export default function ClasePage() {
               />
             </>
           )}
-          <input
-            onClick={reservarClase}
-            disabled={reservado}
-            className={`${reservado && 'clase-page-reservar-disabled'} clase-page-reservar`}
-            type="button"
-            value={reservado ? 'Clase reservada' : 'Reservar clase'}
-          />
+          {!session.admin && (
+            <input
+              onClick={reservarClase}
+              disabled={reservado}
+              className={`${reservado && 'clase-page-reservar-disabled'} clase-page-reservar`}
+              type="button"
+              value={reservado ? 'Clase reservada' : 'Reservar clase'}
+            />
+          )}
         </div>
         <p className="clase-page-description">{claseActiva.descripcion}</p>
       </div>

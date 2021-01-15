@@ -29,8 +29,8 @@ export default function ContainerReportes() {
   const topCincoClases = useMemo(() => {
     if (clasesQuery.data) {
       const topClases = clasesQuery.data.sort((a, b) => {
-        const alumnosA = a.alumnos || [];
-        const alumnosB = b.alumnos || [];
+        const alumnosA = a?.alumnos || [];
+        const alumnosB = b?.alumnos || [];
         return alumnosB.length - alumnosA.length;
       });
       return topClases.slice(0, 5);

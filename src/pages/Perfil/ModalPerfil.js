@@ -41,7 +41,7 @@ export default function ModalPerfil(props) {
     if (clasesQuery.data) {
       const duracionesClases = clasesQuery.data.map(({ duracion }) => parseInt(duracion));
       if (duracionesClases !== 0) {
-        return `${duracionesClases.reduce((total, duracionActual) => total + duracionActual)}hrs`;
+        return `${duracionesClases.reduce((total, duracionActual) => total + duracionActual, 0)}hrs`;
       }
       return 'Debes registrarte en clases para obtener el total de duración de las clases.';
     }

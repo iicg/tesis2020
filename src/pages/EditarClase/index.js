@@ -17,6 +17,8 @@ export default function EditarClase() {
   const [descripcion, setDescripcion] = useState('');
   const [entrenador, setEntrenador] = useState('');
   const [duracion, setDuracion] = useState('1');
+  const [dia, setDia] = useState('');
+  const [horaInicio, setHoraInicio] = useState('1');
 
   const [loading, setLoading] = useState(false);
 
@@ -27,6 +29,8 @@ export default function EditarClase() {
       setDescripcion(clase.descripcion);
       setEntrenador(clase.entrenador);
       setDuracion(clase.duracion);
+      setHoraInicio(clase.horaInicio);
+      setDia(clase.dia);
     } else {
       window.location.replace('/home');
     }
@@ -42,6 +46,8 @@ export default function EditarClase() {
       descripcion,
       entrenador,
       duracion,
+      horaInicio,
+      dia,
     };
     Firebase.classes.update(uid, data).then(() => {
       alert('Guardado');
@@ -102,6 +108,47 @@ export default function EditarClase() {
                   required
                   style={{ height: 160 }}
                 />
+              </div>
+              <div className="dato-nueva-clase">
+                <select
+                  className="dato-nueva-clase-select"
+                  value={dia}
+                  onChange={(e) => setDia(e.target.value)}>
+                  <option value="lunes">Lunes</option>
+                  <option value="martes">Martes</option>
+                  <option value="miercoles">Miércoles</option>
+                  <option value="jueves">Jueves</option>
+                  <option value="viernes">Viernes</option>
+                  <option value="sabado">Sábado</option>
+                  <option value="domingo">Domingo</option>
+                </select>
+              </div>
+              <div className="dato-nueva-clase">
+                <select
+                  className="dato-nueva-clase-select"
+                  value={horaInicio}
+                  onChange={(e) => setHoraInicio(e.target.value)}>
+                  <option value="10:00">10:00</option>
+                  <option value="10:30">10:30</option>
+                  <option value="11:00">11:00</option>
+                  <option value="11:30">11:30</option>
+                  <option value="12:00">12:00</option>
+                  <option value="12:30">12:30</option>
+                  <option value="13:00">13:00</option>
+                  <option value="13:30">13:30</option>
+                  <option value="14:00">14:00</option>
+                  <option value="14:30">14:30</option>
+                  <option value="15:00">15:00</option>
+                  <option value="15:30">15:30</option>
+                  <option value="16:00">16:00</option>
+                  <option value="16:30">16:30</option>
+                  <option value="170:00">17:00</option>
+                  <option value="170:30">17:30</option>
+                  <option value="18:00">18:00</option>
+                  <option value="18:30">18:30</option>
+                  <option value="19:00">19:00</option>
+                  <option value="19:30">19:30</option>
+                </select>
               </div>
               <div className="dato-nueva-clase">
                 <select

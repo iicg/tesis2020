@@ -27,25 +27,25 @@ export default function ContainerReportes() {
   const clasesQuery = useQuery('clases', Firebase.classes.queryAll);
 
   const topCincoClases = useMemo(() => {
-    // if (clasesQuery.data) {
-    //   const topClases = clasesQuery.data.sort((a, b) => {
-    //     const alumnosA = a?.alumnos || [];
-    //     const alumnosB = b?.alumnos || [];
-    //     return alumnosB.length - alumnosA.length;
-    //   });
-    //   return topClases.slice(0, 5);
-    // }
+    if (clasesQuery.data) {
+      const topClases = clasesQuery.data.sort((a, b) => {
+        const alumnosA = a?.alumnos || [];
+        const alumnosB = b?.alumnos || [];
+        return alumnosB.length - alumnosA.length;
+      });
+      return topClases.slice(0, 5);
+    }
     return [];
   }, [clasesQuery.data]);
 
   const [clasesMañana, clasesTarde] = useMemo(() => {
     if (clasesQuery.data) {
       const mañana = clasesQuery.data.filter(({ horaInicio }) => {
-        const horas = Number.parseInt(horaInicio.replace(':', ''));
+        const horas = Number.parseInt(horaInicio?.replace(':', ''));
         return horas < 1200;
       });
       const tarde = clasesQuery.data.filter(({ horaInicio }) => {
-        const horas = Number.parseInt(horaInicio.replace(':', ''));
+        const horas = Number.parseInt(horaInicio?.replace(':', ''));
         return horas >= 1200;
       });
       return [mañana, tarde];

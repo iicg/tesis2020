@@ -22,7 +22,7 @@ export default function ContainerCalendario() {
   );
 
   const renderClase = useCallback(({ uid, nombre, horaInicio, duracion, dia }) => {
-    const position = (Number(horaInicio.replace(':', '')) - 800) / 1400;
+    const position = (Number(horaInicio?.replace(':', '')) - 800) / 1400;
 
     const columnaDia = document.getElementById(`columna${dia}`);
     const espacioDia = document.getElementById(`espacio${dia}`);
